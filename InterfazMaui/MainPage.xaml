@@ -6,7 +6,7 @@
     <Grid Background="#0d0118" RowDefinitions=".05*,.1*,.45*,.05*,.05*,.3*">
         <Label FontSize="16"
                HorizontalOptions="Center"
-               Text="BIENVENIDO A CURSOS ONLINE"
+               Text="BIENVENIDO A CURSOS ONLINE Probando"
                TextColor="White"
                VerticalOptions="Center"/>
 
