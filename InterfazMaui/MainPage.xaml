@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InterfazMaui.MainPage">
+
+    <Grid Background="#0d0118" RowDefinitions=".05*,.1*,.45*,.05*,.05*,.3*">
+        <Label FontSize="16"
+               HorizontalOptions="Center"
+               Text="BIENVENIDO A CURSOS ONLINE"
+               TextColor="White"
+               VerticalOptions="Center"/>
+
+        <Grid Grid.Row="1" Margin="25,10,25,10">
+            <RoundRectangle
+                CornerRadius="25"
+                Fill="#311b45"
+                HeightRequest="45"/>
+            <SearchBar CancelButtonColor="White"
+                       Placeholder="Buscar..."
+                       PlaceholderColor="#ac9db9"
+                       TextColor="White"
+                       VerticalOptions="Center"/>
+        </Grid>
+
+        <CarouselView 
+            
+            Grid.Row="2"
+            IndicatorView="indicatorView"
+            ItemsSource="{Binding FairyTales}"
+            PeekAreaInsets="40" >
+
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout
+                   ItemSpacing="0"
+                   Orientation="Horizontal"
+                   SnapPointsAlignment="Center"
+                    SnapPointsType="MandatorySingle"/>
+            </CarouselView.ItemsLayout>
+                
+                
+                
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid >
+                        <Border
+                            Grid.RowSpan="3"
+                            BackgroundColor="#311b45"
+                            HeightRequest="300"
+                            Stroke="#6e557c"
+                            StrokeShape="RoundRectangle 30,30,30,30"
+                            StrokeThickness="2"
+                            WidthRequest="300">
+                            <Grid RowDefinitions=".2*,.6*,.2*">
+                                <Image 
+                                    Grid.RowSpan="3"
+                                    Aspect="AspectFill" 
+                                    Source="{Binding Image}"/>
+
+                                <RoundRectangle
+                                    Grid.RowSpan="3"
+                                    CornerRadius="30"
+                                    HeightRequest="300"
+                                    WidthRequest="300"
+                                    Opacity="7">
+                                    <RoundRectangle.Fill>
+                                        <LinearGradientBrush EndPoint="0,1">
+                                            <GradientStop Offset="0" Color="Transparent"></GradientStop>
+                                            <GradientStop Offset="1" Color="#030005"/>
+                                        </LinearGradientBrush>
+                                    </RoundRectangle.Fill>
+                                </RoundRectangle>
+
+                                <VerticalStackLayout Grid.Row="2" Margin="20,0,0,0">
+                                    <Label Text="{Binding Docente } " TextColor="White"/>
+                                    <Label 
+                                    FontSize="Large"
+                                    Text="{Binding Name}"
+                                    TextColor="White"/> 
+                                </VerticalStackLayout>
+
+                                <Label 
+                                    Margin="0,20,20,0"
+                                    FontFamily="Icons"
+                                    FontSize="25"
+                                    HorizontalOptions="End"
+                                    Text="&#xf097;"
+                                    TextColor="White"/>
+                            </Grid>
+                            <Border.Shadow>
+                                <Shadow
+                                    Brush="#c283fd"
+                                    Opacity=".7"
+                                    Radius="100"
+                                    Offset="0,0"/>
+                            </Border.Shadow>
+                        </Border>
+
+                       
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <IndicatorView
+            x:Name="indicatorView"
+            Grid.Row="3"
+            HorizontalOptions="Center"
+            IndicatorColor="#616161"
+            IndicatorSize="8"
+            SelectedIndicatorColor="White"
+            VerticalOptions="Center"/>
+
+        <Label Grid.Row="4"
+               Margin="25,10,25,10"
+               FontSize="16"
+               Text="Recomendaciones para ti:"
+               TextColor="White"
+               VerticalOptions="Center"/>
+
+        <CollectionView Grid.Row="5" 
+                        ItemsSource="{Binding FairyTales2}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="25" Orientation="Horizontal"/>
+            </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                    <Grid HeightRequest="200" WidthRequest="200">
+                        <Border
+                            HeightRequest="200"
+                            HorizontalOptions="Center"
+                            Stroke="#6e557c"
+                            StrokeShape="RoundRectangle 20,20,20,20"
+                            StrokeThickness="2"
+                            WidthRequest="200">
+                            <Image 
+                                Aspect="AspectFill" 
+                                Source="{Binding Image}"/>
+                        </Border>
+                            
+                    </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                
+                
+        </CollectionView>
+
+        <Grid Grid.Row="5" 
+              Margin="15,0,15,0"
+              HeightRequest="75"
+              VerticalOptions="End">
+            <Border BackgroundColor="#311b45"
+                    Stroke="#6e557c"
+                    StrokeShape="RoundRectangle 30,30,30,30"
+                    StrokeThickness="2">
+
+                <Grid ColumnDefinitions="*,*,*,*"
+                      RowDefinitions="*,*"
+                        RowSpacing="3">
+
+                    <Label Grid.Row="1"
+                           FontSize="10"
+                           HorizontalOptions="Center"
+                           Text="Inicio"
+                            TextColor="#ac9db9"/> 
+                    
+                    <Label Grid.Row="1"
+                           Grid.Column="1"
+                           FontSize="10"
+                           HorizontalOptions="Center"
+                           Text="Buscar"
+                           TextColor="#ac9db9"/> 
+                    
+                    <Label Grid.Row="1"
+                           Grid.Column="2"
+                           FontSize="10"
+                           HorizontalOptions="Center"
+                           Text="Cursos"
+                            TextColor="#ac9db9"/> 
+                    
+                    <Label Grid.Row="1"
+                           Grid.Column="3"
+                           FontSize="10"
+                           HorizontalOptions="Center"
+                           Text="Perfil"
+                           TextColor="#ac9db9"/>
+                    
+                    <Label
+                            FontFamily="Icons"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           Text="&#xe80c;"
+                           TextColor="#ac9db9"
+                           VerticalOptions="Center"/>
+                    
+                    <Label
+                           Grid.Column="1"
+                           FontFamily="Icons"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           Text="&#xE806;"
+                           TextColor="#ac9db9"
+                           VerticalOptions="Center"/>
+                    
+                    <Label
+                           Grid.Column="2"
+                           FontFamily="Icons"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           Text="&#xf108;"
+                           TextColor="#ac9db9"
+                           VerticalOptions="Center"/>     
+                    
+                    <Label
+                           Grid.Column="3"
+                           FontFamily="Icons"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           Text="&#xE800;"
+                           TextColor="#ac9db9"
+                           VerticalOptions="Center"/>
+                </Grid>
+                      
+            </Border>
+        </Grid>
+
+
+    </Grid>
+
+</ContentPage>
