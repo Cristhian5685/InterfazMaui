@@ -12,7 +12,7 @@ namespace InterfazMaui
         public ObservableCollection<FairyTale> FairyTales { get; set; }
         public ObservableCollection<FairyTale> FairyTales2 { get; set; }
 
-        public ICommand NavigateCommand { get; }
+        //public ICommand NavigateCommand { get; }
 
 
 
@@ -21,42 +21,42 @@ namespace InterfazMaui
             InitializeComponent();
             ModifySearchBar();
             InitializeTales();
-            NavigateCommand = new Command<string>(Navigate);
+            //NavigateCommand = new Command<string>(Navigate);
             BindingContext = this;
            
         }
 
 
 
-        private async void Navigate(string page)
-        {
+        //private async void Navigate(string page)
+        //{
 
-            if (page == "Inicio")
-            {
-                await Navigation.PopToRootAsync(); // Regresar a la página principal
-                return;
-            }
+        //    if (page == "Inicio")
+        //    {
+        //        await Navigation.PopToRootAsync(); // Regresar a la página principal
+        //        return;
+        //    }
 
-            Page newPage = null;
+        //    Page newPage = null;
 
-            switch (page)
-            {
-                case "Buscar":
-                    newPage = new BuscarView();// Navegar a la página de Buscar
-                    break;
-                case "Cursos":
-                    newPage = new CursosView();// Navegar a la página de Cursos
-                    break;
-                case "Perfil":
-                    newPage = new PerfilView();// Navegar a la página de Perfil
-                    break;
-            }
+        //    switch (page)
+        //    {
+        //        case "Buscar":
+        //            newPage = new BuscarView();// Navegar a la página de Buscar
+        //            break;
+        //        case "Cursos":
+        //            newPage = new CursosView();// Navegar a la página de Cursos
+        //            break;
+        //        case "Perfil":
+        //            newPage = new PerfilView();// Navegar a la página de Perfil
+        //            break;
+        //    }
 
-            if (newPage != null)
-            {
-               await Navigation.PushAsync(newPage);
-            }
-        }
+        //    if (newPage != null)
+        //    {
+        //       await Navigation.PushAsync(newPage);
+        //    }
+        //}
 
 
         private void InitializeTales()

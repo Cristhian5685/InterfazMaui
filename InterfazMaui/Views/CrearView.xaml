@@ -3,10 +3,4 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InterfazMaui.Views.BuscarView"
              Title="BuscarView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Pagina de buscar"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
 </ContentPage>
