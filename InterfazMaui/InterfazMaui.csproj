@@ -86,12 +86,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\CrearView.xaml.cs">
-	    <DependentUpon>CrearView.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Update="MainTabbedPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

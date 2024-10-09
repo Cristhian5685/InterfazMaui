@@ -12,7 +12,7 @@
     
     <local:MainPage Title="Inicio"/>
     <views:CursosView Title="Cursos"/>
-    <views:BuscarView Title="Crear" />
+    <views:CrearView Title="Crear" />
     <views:PerfilView Title="Perfil" />
 
     

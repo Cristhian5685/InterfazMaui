@@ -1,6 +1,83 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InterfazMaui.Views.BuscarView"
-             Title="BuscarView">
+             x:Class="InterfazMaui.Views.CrearView"
+             Title="CrearView">
+    <ScrollView BackgroundColor="#0d0118">
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Campo Nombre del Curso -->
+            <Entry x:Name="NameEntry"
+                   Placeholder="Nombre del Curso"
+                   HorizontalOptions="FillAndExpand"
+                   BackgroundColor="#311b45"
+                   TextColor="White"
+                   PlaceholderColor="#ac9db9"/>
+
+            <!-- Campo Docente -->
+            <Entry x:Name="DocenteEntry"
+                   Placeholder="Docente"
+                   HorizontalOptions="FillAndExpand"
+                   BackgroundColor="#311b45"
+                   TextColor="White"
+                   PlaceholderColor="#ac9db9"/>
+
+            <!-- Campo URL de Imagen -->
+            <Entry x:Name="ImageEntry"
+                   Placeholder="URL de la Imagen"
+                   HorizontalOptions="FillAndExpand"
+                   BackgroundColor="#311b45"
+                   TextColor="White"
+                   PlaceholderColor="#ac9db9"/>
+
+            <!-- Campo Descripción -->
+            <Editor x:Name="DescripcionEditor"
+                    Placeholder="Descripción del Curso"
+                    AutoSize="TextChanges"
+                    HeightRequest="100"
+                    BackgroundColor="#311b45"
+                    TextColor="White"
+                    PlaceholderColor="#ac9db9"/>
+
+            <!-- Campo Duración -->
+            <Entry x:Name="DuracionEntry"
+                   Placeholder="Duración del Curso"
+                   HorizontalOptions="FillAndExpand"
+                   BackgroundColor="#311b45"
+                   TextColor="White"
+                   PlaceholderColor="#ac9db9"/>
+
+            <!-- Campo Nivel -->
+            <Picker x:Name="NivelPicker"
+                    Title="Nivel del Curso"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="#311b45"
+                    TextColor="White">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Básico</x:String>
+                        <x:String>Intermedio</x:String>
+                        <x:String>Avanzado</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <!-- Campo Requisitos -->
+            <Editor x:Name="RequisitosEditor"
+                    Placeholder="Requisitos"
+                    AutoSize="TextChanges"
+                    HeightRequest="100"
+                    BackgroundColor="#311b45"
+                    TextColor="White"
+                    PlaceholderColor="#ac9db9"/>
+
+            <!-- Botón para crear el curso -->
+            <Button Text="Crear Curso"
+                    Clicked="OnCrearCursoClicked"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="#6e557c"
+                    TextColor="White"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

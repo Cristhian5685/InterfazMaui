@@ -2,11 +2,69 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InterfazMaui.Views.PerfilView"
-             Title="PerfilView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Perfil de usuario"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Perfil">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20" BackgroundColor="#0d0118">
+
+            <!-- Sección de Información Personal -->
+            <Frame CornerRadius="10" Padding="15" BackgroundColor="#311b45">
+                <VerticalStackLayout Spacing="10">
+                    <!-- Foto de perfil -->
+                    <Image Source="timate_inja.png"
+                           HeightRequest="120"
+                           WidthRequest="120"
+                           Aspect="AspectFill"
+                           HorizontalOptions="Center"/>
+
+                    <!-- Nombre del Usuario -->
+                    <Label Text="Cristhian Ruiz"
+                           FontAttributes="Bold"
+                           FontSize="Large"
+                           TextColor="White"
+                           HorizontalOptions="Center"/>
+
+                    <!-- Correo del Usuario -->
+                    <Label Text="cristhianjesus0542@gmail.com"
+                           FontSize="Medium"
+                           TextColor="#ac9db9"
+                           HorizontalOptions="Center"/>
+
+                    <!-- Botón para Editar Perfil -->
+                    <Button Text="Editar Perfil" 
+                            Clicked="OnEditProfileClicked"
+                            BackgroundColor="#6e557c"
+                            TextColor="White"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Sección de Progreso o Actividades -->
+            <Frame CornerRadius="10" Padding="15" BackgroundColor="#311b45">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Progreso de Cursos"
+                           FontAttributes="Bold"
+                           FontSize="Medium"
+                           TextColor="White"/>
+
+                    <!-- Progreso de un curso -->
+                    <Label Text="Curso 1: Ciberseguridad" TextColor="White"/>
+                    <ProgressBar Progress="0.7" />
+
+                    <Label Text="Curso 2: Inglés Avanzado" TextColor="White"/>
+                    <ProgressBar Progress="0.4" />
+
+                    <Label Text="Curso 3: Mecánica Básica" TextColor="White"/>
+                    <ProgressBar Progress="0.9" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Botón para Cerrar Sesión -->
+            <Button Text="Cerrar Sesión"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    Clicked="OnLogoutClicked"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="50"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
