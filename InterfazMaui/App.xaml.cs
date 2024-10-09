@@ -1,4 +1,7 @@
-﻿namespace InterfazMaui
+﻿using InterfazMaui.Views;
+
+namespace InterfazMaui
+
 {
     public partial class App : Application
     {

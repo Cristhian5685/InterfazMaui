@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InterfazMaui.Views.LoginView"
+             Title="LoginView">
+    <Grid RowDefinitions=".3*,.7*">
+        <Image Aspect="AspectFill" Source="graduados.png"/>
+        <Grid BackgroundColor="#4F3F9B" Opacity=".9" />
+        <Grid ColumnDefinitions="*,*">
+            <Image Aspect="AspectFill"
+                 HeightRequest="120"
+                 Source="logo.png"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <RoundRectangle Margin="-5,-30,-5,-2"
+                          CornerRadius="30,30,0,0"     
+                          Fill="white"/>
+            <VerticalStackLayout Margin="30,0,30,0">
+                <Label FontAttributes="Bold"
+                     FontFamily="bold"
+                     FontSize="Medium"
+                     Text="Bienvenido"
+                     TextColor="#2d2d2d"/>
+                <Label FontFamily="medium"
+                     Text="Inicia sesion para continuar"
+                     TextColor="#a3a3a4"/>
+
+                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
+                    <RoundRectangle Background="#edebf6"
+                                  CornerRadius="10"
+                                  HeightRequest="60"
+                                  HorizontalOptions="Center"
+                                  VerticalOptions="Center"
+                                  WidthRequest="60"/>
+
+                    <Image HorizontalOptions="Center">
+                        <Image.Source>
+                            <FontImageSource FontFamily="AwesoneSolid"
+                                              Glyph="&#xf0e0;"
+                                              Size="44"
+                                           Color="#4f3f9b"/>
+                        </Image.Source>
+                    </Image>
+
+                    <Entry Grid.Column="1"
+                         Placeholder="EMAIL"
+                         Text="cristhianruiz034@gmail.com"
+                         VerticalOptions="Center"
+                         TextColor="Black"/>
+
+                </Grid>
+
+                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
+                    <RoundRectangle Background="#edebf6"
+                                  CornerRadius="10"
+                                  HeightRequest="60"
+                                  HorizontalOptions="Center"
+                                  VerticalOptions="Center"
+                                  WidthRequest="60"/>
+
+                    <Image HorizontalOptions="Center">
+                        <Image.Source>
+                            <FontImageSource FontFamily="AwesoneSolid"
+                                              Glyph="&#xf084;"
+                                              Size="44"
+                                           Color="#4f3f9b"/>
+                        </Image.Source>
+                    </Image>
+
+                    <Entry Grid.Column="1"
+                         Placeholder="CONTRASEÑA"
+                         IsPassword="True"
+                         Text="12345"
+                         VerticalOptions="Center"
+                         TextColor="Black"/>
+
+                </Grid>
+
+                <Button 
+                  Margin="0,20,0,0"
+                  BackgroundColor="#4F3F9B"
+                  HeightRequest="60"
+                  Text="Iniciar Sesion"
+                  TextColor="#fbf6fd"/>
+
+                <Label Margin="0,20,0,-10"
+                     HorizontalOptions="Center"
+                     Text="¿Olvidaste la contraseña?"
+                     TextColor="Blue"
+                     TextDecorations="Underline"/>
+
+
+                <!-- Enlace "Iniciar sesión" -->
+                <StackLayout Orientation="Horizontal"
+               HorizontalOptions="Center"
+               Margin="0,20,0,0">
+                    <Label Text="¿No tienes una cuenta? "
+             TextColor="Black"/>
+                    <Label Text="Registrate"
+             TextColor="Blue"
+             TextDecorations="Underline">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
+
+            </VerticalStackLayout>
+        </Grid>
+
+    </Grid>
+</ContentPage>
