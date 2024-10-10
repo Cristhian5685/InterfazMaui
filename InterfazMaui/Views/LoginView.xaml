@@ -82,7 +82,9 @@
                   BackgroundColor="#4F3F9B"
                   HeightRequest="60"
                   Text="Iniciar Sesion"
-                  TextColor="#fbf6fd"/>
+                  TextColor="#fbf6fd"
+                  Clicked="OnLoginButtonClicked" /> 
+
 
                 <Label Margin="0,20,0,-10"
                      HorizontalOptions="Center"

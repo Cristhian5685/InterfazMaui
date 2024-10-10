@@ -17,6 +17,7 @@ namespace InterfazMaui
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("Epilogue-Medium.ttf", "Epilogue");
                     fonts.AddFont("marke.ttf", "Icons");
+                    fonts.AddFont("Font Awesome 6 Free-Solid-900.otf", "AwesoneSolid");
                 });
 
 #if DEBUG

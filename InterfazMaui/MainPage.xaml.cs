@@ -19,6 +19,7 @@ namespace InterfazMaui
         public MainPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false); // Oculta la barra de navegación
             ModifySearchBar();
             InitializeTales();
             //NavigateCommand = new Command<string>(Navigate);

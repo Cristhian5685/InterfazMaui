@@ -9,7 +9,7 @@ namespace InterfazMaui
         {
             InitializeComponent();
 
-            MainPage = new MainTabbedPage();
+            MainPage = new NavigationPage(new LoginView());
         }
     }
 }

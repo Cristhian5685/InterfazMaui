@@ -6,77 +6,101 @@
     <ScrollView BackgroundColor="#0d0118">
         <VerticalStackLayout Padding="20" Spacing="20">
 
+
+                <Label Text="Crear Nuevo Curso"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="White"
+               Margin="0,0,0,20"/>
+
             <!-- Campo Nombre del Curso -->
-            <Entry x:Name="NameEntry"
-                   Placeholder="Nombre del Curso"
-                   HorizontalOptions="FillAndExpand"
-                   BackgroundColor="#311b45"
-                   TextColor="White"
-                   PlaceholderColor="#ac9db9"/>
+            <Frame CornerRadius="25" BackgroundColor="#311b45" Padding="10" HasShadow="True">
+                <Entry x:Name="NameEntry"
+                       Placeholder="Nombre del Curso"
+                       HorizontalOptions="FillAndExpand"
+                       BackgroundColor="Transparent"
+                       TextColor="White"
+                       PlaceholderColor="#ac9db9"/>
+            </Frame>
 
             <!-- Campo Docente -->
-            <Entry x:Name="DocenteEntry"
-                   Placeholder="Docente"
-                   HorizontalOptions="FillAndExpand"
-                   BackgroundColor="#311b45"
-                   TextColor="White"
-                   PlaceholderColor="#ac9db9"/>
+            <Frame CornerRadius="25" BackgroundColor="#311b45" Padding="10" HasShadow="True">
+                <Entry x:Name="DocenteEntry"
+                       Placeholder="Docente"
+                       HorizontalOptions="FillAndExpand"
+                       BackgroundColor="Transparent"
+                       TextColor="White"
+                       PlaceholderColor="#ac9db9"/>
+            </Frame>
 
             <!-- Campo URL de Imagen -->
-            <Entry x:Name="ImageEntry"
-                   Placeholder="URL de la Imagen"
-                   HorizontalOptions="FillAndExpand"
-                   BackgroundColor="#311b45"
-                   TextColor="White"
-                   PlaceholderColor="#ac9db9"/>
+            <Frame CornerRadius="25" BackgroundColor="#311b45" Padding="10" HasShadow="True">
+                <Entry x:Name="ImageEntry"
+                       Placeholder="URL de la Imagen"
+                       HorizontalOptions="FillAndExpand"
+                       BackgroundColor="Transparent"
+                       TextColor="White"
+                       PlaceholderColor="#ac9db9"/>
+            </Frame>
 
             <!-- Campo Descripción -->
-            <Editor x:Name="DescripcionEditor"
-                    Placeholder="Descripción del Curso"
-                    AutoSize="TextChanges"
-                    HeightRequest="100"
-                    BackgroundColor="#311b45"
-                    TextColor="White"
-                    PlaceholderColor="#ac9db9"/>
+            <Frame CornerRadius="25" BackgroundColor="#311b45" Padding="10" HasShadow="True">
+                <Editor x:Name="DescripcionEditor"
+                        Placeholder="Descripción del Curso"
+                        AutoSize="TextChanges"
+                        HeightRequest="100"
+                        BackgroundColor="Transparent"
+                        TextColor="White"
+                        PlaceholderColor="#ac9db9"/>
+            </Frame>
 
             <!-- Campo Duración -->
-            <Entry x:Name="DuracionEntry"
-                   Placeholder="Duración del Curso"
-                   HorizontalOptions="FillAndExpand"
-                   BackgroundColor="#311b45"
-                   TextColor="White"
-                   PlaceholderColor="#ac9db9"/>
+            <Frame CornerRadius="25" BackgroundColor="#311b45" Padding="10" HasShadow="True">
+                <Entry x:Name="DuracionEntry"
+                       Placeholder="Duración del Curso"
+                       HorizontalOptions="FillAndExpand"
+                       BackgroundColor="Transparent"
+                       TextColor="White"
+                       PlaceholderColor="#ac9db9"/>
+            </Frame>
 
             <!-- Campo Nivel -->
-            <Picker x:Name="NivelPicker"
-                    Title="Nivel del Curso"
-                    HorizontalOptions="FillAndExpand"
-                    BackgroundColor="#311b45"
-                    TextColor="White">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Básico</x:String>
-                        <x:String>Intermedio</x:String>
-                        <x:String>Avanzado</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
+            <Frame CornerRadius="25" BackgroundColor="#311b45" Padding="10" HasShadow="True">
+                <Picker x:Name="NivelPicker"
+                        Title="Nivel del Curso"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="Transparent"
+                        TextColor="White">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Básico</x:String>
+                            <x:String>Intermedio</x:String>
+                            <x:String>Avanzado</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Frame>
 
             <!-- Campo Requisitos -->
-            <Editor x:Name="RequisitosEditor"
-                    Placeholder="Requisitos"
-                    AutoSize="TextChanges"
-                    HeightRequest="100"
-                    BackgroundColor="#311b45"
-                    TextColor="White"
-                    PlaceholderColor="#ac9db9"/>
+            <Frame CornerRadius="25" BackgroundColor="#311b45" Padding="10" HasShadow="True">
+                <Editor x:Name="RequisitosEditor"
+                        Placeholder="Requisitos"
+                        AutoSize="TextChanges"
+                        HeightRequest="100"
+                        BackgroundColor="Transparent"
+                        TextColor="White"
+                        PlaceholderColor="#ac9db9"/>
+            </Frame>
 
             <!-- Botón para crear el curso -->
             <Button Text="Crear Curso"
                     Clicked="OnCrearCursoClicked"
                     HorizontalOptions="FillAndExpand"
                     BackgroundColor="#6e557c"
-                    TextColor="White"/>
+                    TextColor="White"
+                    CornerRadius="25"
+                    FontAttributes="Bold"/>
 
         </VerticalStackLayout>
     </ScrollView>

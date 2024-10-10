@@ -6,7 +6,8 @@ public partial class CrearView : ContentPage
 	public CrearView()
 	{
 		InitializeComponent();
-	}
+        NavigationPage.SetHasNavigationBar(this, false); // Oculta la barra de navegación
+    }
 
     private void OnCrearCursoClicked(object sender, EventArgs e)
     {

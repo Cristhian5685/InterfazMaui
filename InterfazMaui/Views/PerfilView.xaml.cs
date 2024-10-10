@@ -5,10 +5,11 @@ public partial class PerfilView : ContentPage
 	public PerfilView()
 	{
 		InitializeComponent();
+        NavigationPage.SetHasNavigationBar(this, false); // Oculta la barra de navegación
 
 
 
-	}
+    }
 
 
     private async void OnEditProfileClicked(object sender, EventArgs e)
@@ -19,13 +20,12 @@ public partial class PerfilView : ContentPage
 
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
-        // Lógica para cerrar sesión, puedes limpiar la sesión o navegar a la pantalla de login
-        bool confirmLogout = await DisplayAlert("Cerrar Sesión", "¿Estás seguro que deseas cerrar sesión?", "Sí", "No");
+        bool confirmLogout = await DisplayAlert("Cerrar Sesión", "¿Estás seguro de que quieres cerrar sesión?", "Sí", "No");
+
         if (confirmLogout)
         {
-            // Aquí iría la lógica de logout
-            await DisplayAlert("Sesión Cerrada", "Has cerrado sesión", "OK");
-            // Navegar de regreso a la pantalla de inicio de sesión
+            // Reinicia la MainPage a la pantalla de inicio de sesión
+            Application.Current.MainPage = new NavigationPage(new LoginView());
         }
     }
 }

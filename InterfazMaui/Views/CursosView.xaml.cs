@@ -12,6 +12,7 @@ public partial class CursosView : ContentPage
     public CursosView()
     {
         InitializeComponent();
+        NavigationPage.SetHasNavigationBar(this, false); // Oculta la barra de navegación
         InitializeTales2();
 
 
