@@ -8,32 +8,24 @@ namespace InterfazMaui.Views;
 public partial class CursosView : ContentPage
 {
     public ObservableCollection<FairyTale> CursosDisponibles { get; set; }
-    public ICommand VerMasCommand { get; set; }
+ 
     public CursosView()
     {
         InitializeComponent();
         NavigationPage.SetHasNavigationBar(this, false); // Oculta la barra de navegación
         InitializeTales2();
-
-
-        VerMasCommand = new Command<FairyTale>(OnVerMas);
         BindingContext = this;
 
 
     }
 
-  private void OnVerMas(FairyTale curso)
+    private async void OnMatricularButtonClicked(object sender, EventArgs e)
     {
-        if (curso != null)
-        {
-            // Cambiar la visibilidad de los detalles
-            curso.MostrarDetalles = !curso.MostrarDetalles;
-
-            // Notificar que la propiedad ha cambiado para refrescar la vista
-            // Esto es necesario cuando cambiamos algo dentro de una colección enlazada
-            OnPropertyChanged(nameof(CursosDisponibles));
-        }
+        // Navegar a la vista de matrícula
+        await Navigation.PushAsync(new MatriculaView());
     }
+
+   
 
     private void InitializeTales2()
     {

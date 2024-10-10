@@ -22,6 +22,14 @@
                        VerticalOptions="Center"/>
         </Grid>
 
+        <Label Grid.Row="2" 
+               Text="Cursos en los que estás matriculado:"
+               FontSize="18"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Fill"
+               Margin="10,-5,0,10"/>
+        <!-- Ajusta el margen según sea necesario -->
         <CarouselView 
             
             Grid.Row="2"
@@ -83,8 +91,8 @@
                                     FontFamily="Icons"
                                     FontSize="25"
                                     HorizontalOptions="End"
-                                    Text="&#xf097;"
-                                    TextColor="White"/>
+                                    Text="&#xe809;"
+                                    TextColor="Yellow"/>
                             </Grid>
                             <Border.Shadow>
                                 <Shadow
@@ -137,7 +145,19 @@
                                 Aspect="AspectFill" 
                                 Source="{Binding Image}"/>
                         </Border>
-                            
+
+                        <!-- Botón Matricularme -->
+                        <Button Text="Matricularme"
+                        Clicked="OnMatricularButtonClicked" 
+                        HorizontalOptions="Center"
+                        BackgroundColor="#512DA8"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HeightRequest="40"
+                        WidthRequest="125"
+                        Margin="0,150,0,0"/>
+                        <!-- Ajusta el margen según sea necesario -->
+
                     </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

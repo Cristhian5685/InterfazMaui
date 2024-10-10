@@ -97,7 +97,7 @@
             <Button Text="Crear Curso"
                     Clicked="OnCrearCursoClicked"
                     HorizontalOptions="FillAndExpand"
-                    BackgroundColor="#6e557c"
+                    BackgroundColor="#512DA8"
                     TextColor="White"
                     CornerRadius="25"
                     FontAttributes="Bold"/>

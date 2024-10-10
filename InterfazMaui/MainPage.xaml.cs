@@ -28,36 +28,12 @@ namespace InterfazMaui
         }
 
 
+        private async void OnMatricularButtonClicked(object sender, EventArgs e)
+        {
+            // Navegar a la vista de matrícula
+            await Navigation.PushAsync(new MatriculaView());
+        }
 
-        //private async void Navigate(string page)
-        //{
-
-        //    if (page == "Inicio")
-        //    {
-        //        await Navigation.PopToRootAsync(); // Regresar a la página principal
-        //        return;
-        //    }
-
-        //    Page newPage = null;
-
-        //    switch (page)
-        //    {
-        //        case "Buscar":
-        //            newPage = new BuscarView();// Navegar a la página de Buscar
-        //            break;
-        //        case "Cursos":
-        //            newPage = new CursosView();// Navegar a la página de Cursos
-        //            break;
-        //        case "Perfil":
-        //            newPage = new PerfilView();// Navegar a la página de Perfil
-        //            break;
-        //    }
-
-        //    if (newPage != null)
-        //    {
-        //       await Navigation.PushAsync(newPage);
-        //    }
-        //}
 
 
         private void InitializeTales()

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InterfazMaui.Views.MatriculaView"
+             Title="Matricúlate en el Curso">
+    <ScrollView BackgroundColor="#0d0118">
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label Text="Ingresa tus datos"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="White" />
+
+            <Frame CornerRadius="25" BackgroundColor="#311b45">
+                <Entry x:Name="NombreEntry" Placeholder="Nombre" TextColor="White" />
+            </Frame>
+            
+            <Frame CornerRadius="25" BackgroundColor="#311b45">
+                <Entry x:Name="ApellidoEntry" Placeholder="Apellido" TextColor="White" />
+            </Frame>
+
+            <Frame CornerRadius="25" BackgroundColor="#311b45">
+                <Entry x:Name="EdadEntry" Placeholder="Edad" TextColor="White" />
+            </Frame> 
+            
+            <Frame CornerRadius="25" BackgroundColor="#311b45">
+                <Entry x:Name="EmailEntry" Placeholder="Correo Electrónico" TextColor="White" />
+            </Frame>
+
+            <Button Text="Confirmar Matrícula" 
+                    BackgroundColor="#512DA8" 
+                    TextColor="White" 
+                     />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
