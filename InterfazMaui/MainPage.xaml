@@ -1,16 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InterfazMaui.MainPage">
+             x:Class="InterfazMaui.MainPage"
+             Title="MainPage">
 
-    <Grid Background="#0d0118" RowDefinitions=".05*,.1*,.45*,.05*,.05*,.3*">
+    <Grid BackgroundColor="#0d0118" RowDefinitions=".05*,.1*,.45*,.05*,.05*,.3*">
+
+        <!-- Título de bienvenida -->
         <Label FontSize="16"
                HorizontalOptions="Center"
                Text="BIENVENIDO A CURSOS ONLINE"
                TextColor="White"
-               VerticalOptions="Center"/>
+               VerticalOptions="Center" />
 
-        <Grid Grid.Row="1" Margin="25,10,25,10">
+        <!-- Barra de búsqueda -->
+        <Grid Grid.Row="1" Margin="25,0,25,25">
             <RoundRectangle
                 CornerRadius="25"
                 Fill="#311b45"
@@ -22,102 +26,100 @@
                        VerticalOptions="Center"/>
         </Grid>
 
-        <Label Grid.Row="2" 
-               Text="Cursos en los que estás matriculado:"
+        <!-- Cursos matriculados -->
+        <Label Grid.Row="2"
+               Text="Cursos disponibles:"
                FontSize="18"
                FontAttributes="Bold"
                TextColor="White"
-               HorizontalOptions="Fill"
-               Margin="10,-5,0,10"/>
-        <!-- Ajusta el margen según sea necesario -->
+               HorizontalOptions="Start"
+               Margin="10,0,0,10"/>
+
+        <!-- Carousel de cursos -->
         <CarouselView 
-            
             Grid.Row="2"
             IndicatorView="indicatorView"
-            ItemsSource="{Binding FairyTales}"
-            PeekAreaInsets="40" >
+            ItemsSource="{Binding CursosDisponibles}"
+            PeekAreaInsets="40">
 
             <CarouselView.ItemsLayout>
                 <LinearItemsLayout
                    ItemSpacing="0"
                    Orientation="Horizontal"
                    SnapPointsAlignment="Center"
-                    SnapPointsType="MandatorySingle"/>
+                   SnapPointsType="MandatorySingle"/>
             </CarouselView.ItemsLayout>
-                
-                
-                
+            
+
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <Grid >
-                        <Border
-                            Grid.RowSpan="3"
-                            BackgroundColor="#311b45"
-                            HeightRequest="300"
-                            Stroke="#6e557c"
-                            StrokeShape="RoundRectangle 30,30,30,30"
-                            StrokeThickness="2"
-                            WidthRequest="300">
-                            <Grid RowDefinitions=".2*,.6*,.2*">
-                                <Image 
-                                    Grid.RowSpan="3"
-                                    Aspect="AspectFill" 
-                                    Source="{Binding Image}"/>
+                    <Grid>
+                        <Border Grid.RowSpan="3"
+                                BackgroundColor="#311b45"
+                                HeightRequest="300"
+                                Stroke="#6e557c"
+                                StrokeShape="RoundRectangle 30,30,30,30"
+                                StrokeThickness="2"
+                                WidthRequest="300">
 
-                                <RoundRectangle
-                                    Grid.RowSpan="3"
-                                    CornerRadius="30"
-                                    HeightRequest="300"
-                                    WidthRequest="300"
-                                    Opacity="7">
+                            <Grid RowDefinitions=".2*,.6*,.2*">
+                                <!-- Imagen del curso -->
+                                <Image Grid.RowSpan="3"
+                                       Aspect="AspectFill"
+                                       Source="{Binding Image}"/>
+
+                                <!-- Superposición con gradiente -->
+                                <RoundRectangle Grid.RowSpan="3"
+                                                CornerRadius="30"
+                                                HeightRequest="300"
+                                                WidthRequest="300"
+                                                Opacity="7">
                                     <RoundRectangle.Fill>
                                         <LinearGradientBrush EndPoint="0,1">
-                                            <GradientStop Offset="0" Color="Transparent"></GradientStop>
+                                            <GradientStop Offset="0" Color="Transparent"/>
                                             <GradientStop Offset="1" Color="#030005"/>
                                         </LinearGradientBrush>
                                     </RoundRectangle.Fill>
                                 </RoundRectangle>
 
-                                <VerticalStackLayout Grid.Row="2" Margin="20,0,0,0">
-                                    <Label Text="{Binding Docente } " TextColor="White"/>
-                                    <Label 
-                                    FontSize="Large"
-                                    Text="{Binding Name}"
-                                    TextColor="White"/> 
+                                <!-- Información del curso -->
+                                <VerticalStackLayout Grid.Row="2"
+                                                     Margin="20,0,0,0" >
+                                    <Label Text="{Binding Docente}"
+                                           TextColor="White"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="1"/>
+                                    <Label Text="{Binding Name}"
+                                           FontSize="Large"
+                                           TextColor="White"
+                                           FontAttributes="Bold"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="1"/>
                                 </VerticalStackLayout>
 
-                                <Label 
-                                    Margin="0,20,20,0"
-                                    FontFamily="Icons"
-                                    FontSize="25"
-                                    HorizontalOptions="End"
-                                    Text="&#xe809;"
-                                    TextColor="Yellow"/>
+                                <!-- Ícono en la esquina -->
+                                <Label Margin="0,20,20,0"
+                                       FontFamily="Icons"
+                                       FontSize="25"
+                                       HorizontalOptions="End"
+                                       Text="&#xe809;"
+                                       TextColor="Yellow"/>
                             </Grid>
-                            <Border.Shadow>
-                                <Shadow
-                                    Brush="#c283fd"
-                                    Opacity=".7"
-                                    Radius="100"
-                                    Offset="0,0"/>
-                            </Border.Shadow>
                         </Border>
-
-                       
                     </Grid>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
 
-        <IndicatorView
-            x:Name="indicatorView"
-            Grid.Row="3"
-            HorizontalOptions="Center"
-            IndicatorColor="#616161"
-            IndicatorSize="8"
-            SelectedIndicatorColor="White"
-            VerticalOptions="Center"/>
+        <!-- Indicador del carousel -->
+        <IndicatorView x:Name="indicatorView"
+                       Grid.Row="3"
+                       HorizontalOptions="Center"
+                       IndicatorColor="#616161"
+                       IndicatorSize="8"
+                       SelectedIndicatorColor="White"/>
 
+        <!-- Recomendaciones -->
         <Label Grid.Row="4"
                Margin="25,10,25,10"
                FontSize="16"
@@ -125,49 +127,42 @@
                TextColor="White"
                VerticalOptions="Center"/>
 
+        <!-- Recomendaciones en CollectionView -->
         <CollectionView Grid.Row="5" 
-                        ItemsSource="{Binding FairyTales2}">
+                        ItemsSource="{Binding CursosDisponibles}"
+                        HeightRequest="200"
+                        HorizontalScrollBarVisibility="Never">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="25" Orientation="Horizontal"/>
             </CollectionView.ItemsLayout>
 
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
                     <Grid HeightRequest="200" WidthRequest="200">
-                        <Border
-                            HeightRequest="200"
-                            HorizontalOptions="Center"
-                            Stroke="#6e557c"
-                            StrokeShape="RoundRectangle 20,20,20,20"
-                            StrokeThickness="2"
-                            WidthRequest="200">
-                            <Image 
-                                Aspect="AspectFill" 
-                                Source="{Binding Image}"/>
+                        <Border HeightRequest="200"
+                                WidthRequest="200"
+                                HorizontalOptions="Center"
+                                Stroke="#6e557c"
+                                StrokeShape="RoundRectangle 20,20,20,20"
+                                StrokeThickness="2">
+                            <Image Aspect="AspectFill" 
+                                   Source="{Binding Image}"/>
                         </Border>
 
                         <!-- Botón Matricularme -->
                         <Button Text="Matricularme"
-                        Clicked="OnMatricularButtonClicked" 
-                        HorizontalOptions="Center"
-                        BackgroundColor="#512DA8"
-                        TextColor="White"
-                        CornerRadius="10"
-                        HeightRequest="40"
-                        WidthRequest="125"
-                        Margin="0,150,0,0"/>
-                        <!-- Ajusta el margen según sea necesario -->
-
+                                Clicked="OnMatricularButtonClicked"
+                                HorizontalOptions="Center"
+                                BackgroundColor="#512DA8"
+                                TextColor="White"
+                                CornerRadius="10"
+                                HeightRequest="40"
+                                WidthRequest="125"
+                                Margin="0,150,0,0"/>
                     </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                
-                
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
         </CollectionView>
-
-
-   
-
 
     </Grid>
 

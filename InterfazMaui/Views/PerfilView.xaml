@@ -17,16 +17,23 @@
                            HorizontalOptions="Center"/>
 
                     <!-- Nombre del Usuario -->
-                    <Label Text="Cristhian Ruiz"
+                    <Label Text="{Binding NombreCompleto}"
                            FontAttributes="Bold"
                            FontSize="Large"
                            TextColor="White"
                            HorizontalOptions="Center"/>
 
                     <!-- Correo del Usuario -->
-                    <Label Text="cristhianjesus0542@gmail.com"
+                    <Label Text="{Binding Email}"
                            FontSize="Medium"
                            TextColor="#ac9db9"
+                           HorizontalOptions="Center"/>
+
+                    <!-- Especialidad del Docente, solo visible si es docente -->
+                    <Label Text="{Binding Especialidad}"
+                           FontSize="Medium"
+                           TextColor="#ac9db9"
+                           IsVisible="{Binding IsDocente}"
                            HorizontalOptions="Center"/>
 
                     <!-- Botón para Editar Perfil -->
@@ -34,26 +41,6 @@
                             Clicked="OnEditProfileClicked"
                             BackgroundColor="#6e557c"
                             TextColor="White"/>
-                </VerticalStackLayout>
-            </Frame>
-
-            <!-- Sección de Progreso o Actividades -->
-            <Frame CornerRadius="10" Padding="15" BackgroundColor="#311b45">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Progreso de Cursos"
-                           FontAttributes="Bold"
-                           FontSize="Medium"
-                           TextColor="White"/>
-
-                    <!-- Progreso de un curso -->
-                    <Label Text="Curso 1: Ciberseguridad" TextColor="White"/>
-                    <ProgressBar Progress="0.7" />
-
-                    <Label Text="Curso 2: Inglés Avanzado" TextColor="White"/>
-                    <ProgressBar Progress="0.4" />
-
-                    <Label Text="Curso 3: Mecánica Básica" TextColor="White"/>
-                    <ProgressBar Progress="0.9" />
                 </VerticalStackLayout>
             </Frame>
 

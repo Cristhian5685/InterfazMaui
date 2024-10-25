@@ -37,25 +37,15 @@
                                        FontSize="Small" TextColor="#ac9db9" 
                                        HorizontalOptions="Center" IsVisible="{Binding MostrarDetalles}"/>
 
-                                <!-- Botón Matricularme (Visible solo si MostrarDetalles es verdadero) -->
-                                <Button Text="Matricularme"
-                                        Clicked="OnMatricularButtonClicked" 
-                                        HorizontalOptions="Center"
-                                        BackgroundColor="#512DA8"
-                                        TextColor="White"
-                                        CornerRadius="10"
-                                        HeightRequest="40"
-                                        WidthRequest="125"
-                                        IsVisible="{Binding MostrarDetalles}"
-                                        Margin="0,10,0,0"/>
-
                                 <Button Text="{Binding VerMasTexto}"
                                         BackgroundColor="#512DA8" 
                                         TextColor="White" 
                                         CornerRadius="20" 
                                         HorizontalOptions="Center" 
                                         Margin="0,10,0,0"
-                                        Command="{Binding ToggleVerMasCommand}" />
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.ToggleVerMasCommand}"
+                                        CommandParameter="{Binding}" />
+
 
 
 

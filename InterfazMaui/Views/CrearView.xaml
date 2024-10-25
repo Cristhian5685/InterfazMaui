@@ -6,13 +6,12 @@
     <ScrollView BackgroundColor="#0d0118">
         <VerticalStackLayout Padding="20" Spacing="20">
 
-
-                <Label Text="Crear Nuevo Curso"
-               FontSize="24"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"
-               TextColor="White"
-               Margin="0,0,0,20"/>
+            <Label Text="Crear nuevo curso"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   Margin="0,0,0,20"/>
 
             <!-- Campo Nombre del Curso -->
             <Frame CornerRadius="25" BackgroundColor="#311b45" Padding="10" HasShadow="True">
@@ -36,12 +35,13 @@
 
             <!-- Campo URL de Imagen -->
             <Frame CornerRadius="25" BackgroundColor="#311b45" Padding="10" HasShadow="True">
-                <Entry x:Name="ImageEntry"
-                       Placeholder="URL de la Imagen"
-                       HorizontalOptions="FillAndExpand"
-                       BackgroundColor="Transparent"
-                       TextColor="White"
-                       PlaceholderColor="#ac9db9"/>
+                <StackLayout>
+                    <Button Text="Seleccionar Imagen" 
+                Clicked="OnSeleccionarImagenClicked" 
+                BackgroundColor="#512DA8"
+                TextColor="White"/>
+                    <Image x:Name="CursoImage" HeightRequest="200" />
+                </StackLayout>
             </Frame>
 
             <!-- Campo Descripción -->

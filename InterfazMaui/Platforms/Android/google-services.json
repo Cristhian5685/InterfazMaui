@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "744531375539",
+    "project_id": "cursosmovil-2b6d6",
+    "storage_bucket": "cursosmovil-2b6d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744531375539:android:2446571a9c30704ec1c7c6",
+        "android_client_info": {
+          "package_name": "com.tuapp.cursosonline"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHQIM8REv5OKqzIMJ-vc_jwyh2viBZqBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

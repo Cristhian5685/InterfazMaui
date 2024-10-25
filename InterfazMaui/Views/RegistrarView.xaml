@@ -3,170 +3,227 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InterfazMaui.Views.RegistrarView"
              Title="RegistrarView">
-    <Grid RowDefinitions=".3*,.7*">
-        <Image Aspect="AspectFill" Source="graduados.png"/>
-        <Grid BackgroundColor="#4F3F9B" Opacity=".9" />
-        <Grid ColumnDefinitions="*,*">
-            <Image Aspect="AspectFill"
-             HeightRequest="120"
-             Source="logo.png"/>
+
+    <!-- ScrollView para permitir scroll en pantallas pequeñas -->
+    <ScrollView>
+        <Grid RowDefinitions=".3*,.7*">
+            <Image Aspect="AspectFill" Source="graduados.png"/>
+            <Grid BackgroundColor="#4F3F9B" Opacity=".9" />
+            <Grid ColumnDefinitions="*,*">
+                <Image Aspect="AspectFill"
+                     HeightRequest="120"
+                     Source="logo.png"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <RoundRectangle Margin="-5,-30,-5,-2"
+                          CornerRadius="30,30,0,0"     
+                          Fill="white"/>
+                <VerticalStackLayout Margin="30,0,30,0">
+                    <Label FontAttributes="Bold"
+                     FontFamily="bold"
+                     FontSize="Medium"
+                     Text="Regístrate"
+                     TextColor="#2d2d2d"/>
+                    <Label FontFamily="medium"
+                     Text="Crea una cuenta nueva"
+                     TextColor="#a3a3a4"/>
+
+                    <!-- Nombre Completo -->
+                    <Grid Margin="0,20,0,0" ColumnDefinitions=".2*,.8*">
+                        <RoundRectangle Background="#edebf6"
+                                  CornerRadius="10"
+                                  HeightRequest="60"
+                                  HorizontalOptions="Center"
+                                  VerticalOptions="Center"
+                                  WidthRequest="60"/>
+
+                        <Image HorizontalOptions="Center">
+                            <Image.Source>
+                                <FontImageSource FontFamily="AwesoneSolid"
+                                              Glyph="&#xf007;"
+                                              Size="44"
+                                           Color="#4f3f9b"/>
+                            </Image.Source>
+                        </Image>
+
+                        <Entry x:Name="nombreCompletoEntry"
+                         Grid.Column="1"
+                         Placeholder="NOMBRE COMPLETO"
+                         VerticalOptions="Center"
+                         TextColor="Black"/>
+
+                    </Grid>
+
+                    <!-- Email -->
+                    <Grid Margin="0,20,0,0" ColumnDefinitions=".2*,.8*">
+                        <RoundRectangle Background="#edebf6"
+                                  CornerRadius="10"
+                                  HeightRequest="60"
+                                  HorizontalOptions="Center"
+                                  VerticalOptions="Center"
+                                  WidthRequest="60"/>
+
+                        <Image HorizontalOptions="Center">
+                            <Image.Source>
+                                <FontImageSource FontFamily="AwesoneSolid"
+                                              Glyph="&#xf0e0;"
+                                              Size="44"
+                                           Color="#4f3f9b"/>
+                            </Image.Source>
+                        </Image>
+
+                        <Entry x:Name="emailEntry"
+                            Grid.Column="1"
+                         Placeholder="EMAIL"
+                         VerticalOptions="Center"
+                         TextColor="Black"/>
+
+                    </Grid>
+
+                    <!-- Password -->
+                    <Grid Margin="0,20,0,0" ColumnDefinitions=".2*,.8*">
+                        <RoundRectangle Background="#edebf6"
+                                  CornerRadius="10"
+                                  HeightRequest="60"
+                                  HorizontalOptions="Center"
+                                  VerticalOptions="Center"
+                                  WidthRequest="60"/>
+
+                        <Image HorizontalOptions="Center">
+                            <Image.Source>
+                                <FontImageSource FontFamily="AwesoneSolid"
+                                              Glyph="&#xf084;"
+                                              Size="44"
+                                           Color="#4f3f9b"/>
+                            </Image.Source>
+                        </Image>
+
+                        <Entry x:Name="passwordEntry"
+                            Grid.Column="1"
+                         Placeholder="CONTRASEÑA"
+                         IsPassword="True"
+                         VerticalOptions="Center"
+                         TextColor="Black"/>
+
+                    </Grid>
+
+                    <!-- Confirmar Contraseña -->
+                    <Grid Margin="0,20,0,0" ColumnDefinitions=".2*,.8*">
+                        <RoundRectangle Background="#edebf6"
+                                  CornerRadius="10"
+                                  HeightRequest="60"
+                                  HorizontalOptions="Center"
+                                  VerticalOptions="Center"
+                                  WidthRequest="60"/>
+
+                        <Image HorizontalOptions="Center">
+                            <Image.Source>
+                                <FontImageSource FontFamily="AwesoneSolid"
+                                              Glyph="&#xf084;"
+                                              Size="44"
+                                           Color="#4f3f9b"/>
+                            </Image.Source>
+                        </Image>
+
+                        <Entry x:Name="confirmPasswordEntry"
+                            Grid.Column="1"
+                         Placeholder="CONFIRMAR CONTRASEÑA"
+                         IsPassword="True"
+                         VerticalOptions="Center"
+                         TextColor="Black"/>
+
+                    </Grid>
+
+                    <!-- Picker para el Rol con estilo -->
+                    <Grid Margin="0,20,0,0" ColumnDefinitions=".2*,.8*">
+                        <RoundRectangle Background="#edebf6"
+                                  CornerRadius="10"
+                                  HeightRequest="60"
+                                  HorizontalOptions="Center"
+                                  VerticalOptions="Center"
+                                  WidthRequest="60"/>
+
+                        <!-- Icono del rol -->
+                        <Image HorizontalOptions="Center">
+                            <Image.Source>
+                                <FontImageSource FontFamily="AwesoneSolid"
+                                              Glyph="&#xf19d;"
+                                              Size="44"
+                                           Color="#4f3f9b"/>
+                            </Image.Source>
+                        </Image>
+
+                        <!-- Picker con estilo similar a Entry -->
+                        <Picker x:Name="rolePicker"
+                            Grid.Column="1"
+                            BackgroundColor="Transparent"
+                            TextColor="Black"
+                            Title="Selecciona tu rol"
+                            VerticalOptions="Center"
+                            SelectedIndexChanged="OnRolePickerSelectedIndexChanged">            
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Estudiante</x:String>
+                                    <x:String>Docente</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </Grid>
+
+                    <!-- Entry de Especialidad (inicialmente oculto) -->
+                    <Grid x:Name="specialtyGrid" IsVisible="False" Margin="0,20,0,0" ColumnDefinitions=".2*,.8*">
+                        <RoundRectangle Background="#edebf6"
+                          CornerRadius="10"
+                          HeightRequest="60"
+                          HorizontalOptions="Center"
+                          VerticalOptions="Center"
+                          WidthRequest="60"/>
+
+                        <Image HorizontalOptions="Center">
+                            <Image.Source>
+                                <FontImageSource FontFamily="AwesoneSolid"
+                          Glyph="&#xf19c;"
+                          Size="44"
+                       Color="#4f3f9b"/>
+                            </Image.Source>
+                        </Image>
+
+                        <Entry x:Name="especialidadEntry"
+                         Grid.Column="1"
+                         Placeholder="ESPECIALIDAD"
+                         VerticalOptions="Center"
+                         TextColor="Black"/>        
+                    </Grid>
+
+                    <!-- Botón de Registro -->
+                    <Button 
+                  Margin="0,20,0,0"
+                  BackgroundColor="#4F3F9B"
+                  HeightRequest="60"
+                  Text="Registrarse"
+                  TextColor="#fbf6fd"
+                  Clicked="OnRegisterButtonClicked"/>
+
+
+                    <!-- Texto para iniciar sesión -->
+                    <StackLayout Orientation="Horizontal"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,0">
+                        <Label Text="¿Ya tienes una cuenta? "
+                 TextColor="Black"/>
+                        <Label Text="Iniciar sesión"
+                 TextColor="Blue"
+                 TextDecorations="Underline">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLoginLabelTapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+
+                </VerticalStackLayout>
+            </Grid>
+
         </Grid>
-
-        <Grid Grid.Row="1">
-            <RoundRectangle Margin="-5,-30,-5,-2"
-                      CornerRadius="30,30,0,0"     
-                      Fill="white"/>
-            <VerticalStackLayout Margin="30,0,30,0">
-                <Label FontAttributes="Bold"
-                 FontFamily="bold"
-                 FontSize="Medium"
-                 Text="Registrate"
-                 TextColor="#2d2d2d"/>
-                <Label FontFamily="medium"
-                 Text="Crea una cuenta nueva"
-                 TextColor="#a3a3a4"/>
-
-                <!-- Nombre Completo -->
-
-                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
-                    <RoundRectangle Background="#edebf6"
-                              CornerRadius="10"
-                              HeightRequest="60"
-                              HorizontalOptions="Center"
-                              VerticalOptions="Center"
-                              WidthRequest="60"/>
-
-                    <Image HorizontalOptions="Center">
-                        <Image.Source>
-                            <FontImageSource FontFamily="AwesoneSolid"
-                                          Glyph="&#xf007;"
-                                          Size="44"
-                                       Color="#4f3f9b"/>
-                        </Image.Source>
-                    </Image>
-
-                    <Entry Grid.Column="1"
-                     Placeholder="NOMBRE COMPLETO"
-                     Text="Cristhian de Jesus Ruiz Ruiz"
-                     VerticalOptions="Center"
-                     TextColor="Black"/>
-
-                </Grid>
-
-                <!-- Email -->
-                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
-                    <RoundRectangle Background="#edebf6"
-                              CornerRadius="10"
-                              HeightRequest="60"
-                              HorizontalOptions="Center"
-                              VerticalOptions="Center"
-                              WidthRequest="60"/>
-
-                    <Image HorizontalOptions="Center">
-                        <Image.Source>
-                            <FontImageSource FontFamily="AwesoneSolid"
-                                          Glyph="&#xf0e0;"
-                                          Size="44"
-                                       Color="#4f3f9b"/>
-                        </Image.Source>
-                    </Image>
-
-                    <Entry Grid.Column="1"
-                     Placeholder="EMAIL"
-                     Text="cristhianruiz034@gmail.com"
-                     VerticalOptions="Center"
-                     TextColor="Black"/>
-
-                </Grid>
-
-                <!-- password -->
-
-                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
-                    <RoundRectangle Background="#edebf6"
-                              CornerRadius="10"
-                              HeightRequest="60"
-                              HorizontalOptions="Center"
-                              VerticalOptions="Center"
-                              WidthRequest="60"/>
-
-                    <Image HorizontalOptions="Center">
-                        <Image.Source>
-                            <FontImageSource FontFamily="AwesoneSolid"
-                                          Glyph="&#xf084;"
-                                          Size="44"
-                                       Color="#4f3f9b"/>
-                        </Image.Source>
-                    </Image>
-
-                    <Entry Grid.Column="1"
-                     Placeholder="CONTRASEÑA"
-                     IsPassword="True"
-                     Text="12345"
-                     VerticalOptions="Center"
-                     TextColor="Black"/>
-
-                </Grid>
-
-                <!-- Confirmar Contraseña -->
-
-                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
-                    <RoundRectangle Background="#edebf6"
-                              CornerRadius="10"
-                              HeightRequest="60"
-                              HorizontalOptions="Center"
-                              VerticalOptions="Center"
-                              WidthRequest="60"/>
-
-                    <Image HorizontalOptions="Center">
-                        <Image.Source>
-                            <FontImageSource FontFamily="AwesoneSolid"
-                                          Glyph="&#xf084;"
-                                          Size="44"
-                                       Color="#4f3f9b"/>
-                        </Image.Source>
-                    </Image>
-
-                    <Entry Grid.Column="1"
-                     Placeholder="CONFIRMAR CONTRASEÑA"
-                     IsPassword="True"
-                     Text="12345"
-                     VerticalOptions="Center"
-                     TextColor="Black"/>
-
-                </Grid>
-
-                <!-- Checkbox de Términos y Condiciones -->
-                <StackLayout Orientation="Horizontal" Margin="0,20,0,0" HorizontalOptions="Center">
-                    <CheckBox VerticalOptions="Center" />
-                    <Label Text="Acepto los Términos y Condiciones"
-         VerticalOptions="Center"
-         TextColor="#a3a3a4"/>
-                </StackLayout>
-
-
-                <Button 
-              Margin="0,20,0,0"
-              BackgroundColor="#4F3F9B"
-              HeightRequest="60"
-              Text="Registrarse"
-              TextColor="#fbf6fd"/>
-
-                <StackLayout Orientation="Horizontal"
-               HorizontalOptions="Center"
-               Margin="0,20,0,0">
-                    <Label Text="¿Ya tienes una cuenta? "
-             TextColor="Black"/>
-                    <Label Text="Iniciar sesión"
-             TextColor="Blue"
-             TextDecorations="Underline">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </StackLayout>
-
-            </VerticalStackLayout>
-        </Grid>
-
-    </Grid>
+    </ScrollView>
 </ContentPage>

@@ -2,81 +2,68 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CommunityToolkit.Maui.Views;
 using InterfazMaui.Models;
+using Firebase.Database;
+using Firebase.Database.Query;
 
-namespace InterfazMaui.Views;
-
-public partial class CursosView : ContentPage
+namespace InterfazMaui.Views
 {
-    public ObservableCollection<FairyTale> CursosDisponibles { get; set; }
- 
-    public CursosView()
+    public partial class CursosView : ContentPage
     {
-        InitializeComponent();
-        NavigationPage.SetHasNavigationBar(this, false); // Oculta la barra de navegación
-        InitializeTales2();
-        BindingContext = this;
+        public ICommand ToggleVerMasCommand => new Command<Cursos>(ToggleDetalles);
+        public ObservableCollection<Cursos> CursosDisponibles { get; set; }
 
+        public CursosView()
+        {
+            InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false); // Oculta la barra de navegación
+            CursosDisponibles = new ObservableCollection<Cursos>(); // Inicializa la colección
+            BindingContext = this;
 
-    }
+            // Cargar cursos desde Firebase
+            CargarCursosDesdeFirebase();
+        }
 
-    private async void OnMatricularButtonClicked(object sender, EventArgs e)
-    {
-        // Navegar a la vista de matrícula
-        await Navigation.PushAsync(new MatriculaView());
-    }
+        private async void OnMatricularButtonClicked(object sender, EventArgs e)
+        {
+            // Navegar a la vista de matrícula
+            await Navigation.PushAsync(new MatriculaView());
+        }
 
-   
+        private void ToggleDetalles(Cursos curso)
+        {
+            curso.MostrarDetalles = !curso.MostrarDetalles;
 
-    private void InitializeTales2()
-    {
-        CursosDisponibles = new ObservableCollection<FairyTale>
+            
+        }
+
+        private async void CargarCursosDesdeFirebase()
+        {
+            try
             {
+                var firebaseClient = new FirebaseClient("https://cursosmovil-2b6d6-default-rtdb.firebaseio.com/");
+                var cursos = await firebaseClient
+                    .Child("cursos")
+                    .OnceAsync<Cursos>();
 
-            new FairyTale
-        {
-            Name = "Ciber Seguridad",
-            Docente = "Marcos Antonio Solis",
-            Image = "seguridad.png",
-            Descripcion = "Aprende los fundamentos de la seguridad informática y cómo proteger sistemas de ataques.",
-            Duracion = "3 meses",
-            Nivel = "Intermedio",
-            Requisitos = "Conocimientos básicos de informática"
-        },
-
-            new FairyTale
-        {
-            Name = "Cursos de dibujo",
-            Docente = "Maria Antonieta de las Nieves",
-            Image = "dibujo.jpeg",
-            Descripcion = "Curso para aprender técnicas básicas y avanzadas de dibujo.",
-            Duracion = "2 meses",
-            Nivel = "Básico",
-            Requisitos = "Ninguno"
-        },
-            new FairyTale { Name = "Ingles Avanzado",
-            Docente="Juan Marino Rugama", Image = "a.webp", 
-            Descripcion = "Curso para aprender técnicas básicas y avanzadas de dibujo.",
-            Duracion = "2 meses",
-            Nivel = "Básico",
-            Requisitos = "Ninguno" },
-
-            new FairyTale { Name = "Macanica Basica",
-            Docente="Jesus Cristhian Lopez Gutierrez", 
-            Image = "moto.jpg", 
-            Descripcion = "Curso para aprender técnicas básicas y avanzadas de dibujo.",
-            Duracion = "2 meses",
-            Nivel = "Básico",
-            Requisitos = "Ninguno" },
-
-            new FairyTale {Name = "Electricidad",
-            Docente = "Alexande Castro", 
-            Image = "electricidad.jpg", 
-            Descripcion = "Curso para aprender técnicas básicas y avanzadas de dibujo.", 
-            Duracion = "2 meses", 
-            Nivel = "Básico", 
-            Requisitos = "Ninguno"},
-
-            };
+                foreach (var curso in cursos)
+                {
+                    // Añadir cada curso a la colección
+                    CursosDisponibles.Add(new Cursos
+                    {
+                        Name = curso.Object.Name,
+                        Docente = curso.Object.Docente,
+                        Image = curso.Object.Image,
+                        Descripcion = curso.Object.Descripcion,
+                        Duracion = curso.Object.Duracion,
+                        Nivel = curso.Object.Nivel,
+                        Requisitos = curso.Object.Requisitos
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"No se pudieron cargar los cursos: {ex.Message}", "OK");
+            }
+        }
     }
-
-}   
+}
