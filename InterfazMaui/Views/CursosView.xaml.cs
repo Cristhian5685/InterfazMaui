@@ -1,68 +1,72 @@
+using Firebase.Database;
+using InterfazMaui.Models;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using CommunityToolkit.Maui.Views;
-using InterfazMaui.Models;
-using Firebase.Database;
-using Firebase.Database.Query;
 
 namespace InterfazMaui.Views
 {
     public partial class CursosView : ContentPage
     {
-        public ICommand ToggleVerMasCommand => new Command<Cursos>(ToggleDetalles);
-        public ObservableCollection<Cursos> CursosDisponibles { get; set; }
+        FirebaseClient client = new FirebaseClient("https://cursosmovil-2b6d6-default-rtdb.firebaseio.com/");
+
+        public ObservableCollection<Cursos> CursosDisponibles { get; set; } = new ObservableCollection<Cursos>();
+
+        public ICommand ToggleVerMasCommand { get; }
 
         public CursosView()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false); // Oculta la barra de navegación
-            CursosDisponibles = new ObservableCollection<Cursos>(); // Inicializa la colección
             BindingContext = this;
+            NavigationPage.SetHasNavigationBar(this, false); // Oculta la barra de navegación
 
-            // Cargar cursos desde Firebase
-            CargarCursosDesdeFirebase();
+            ToggleVerMasCommand = new Command<Cursos>(ToggleVerMas);
+            CargarCursos();
         }
 
-        private async void OnMatricularButtonClicked(object sender, EventArgs e)
-        {
-            // Navegar a la vista de matrícula
-            await Navigation.PushAsync(new MatriculaView());
-        }
 
-        private void ToggleDetalles(Cursos curso)
-        {
-            curso.MostrarDetalles = !curso.MostrarDetalles;
+        // Método para cargar cursos desde Firebase
 
-            
-        }
-
-        private async void CargarCursosDesdeFirebase()
+        public void CargarCursos()
         {
             try
             {
-                var firebaseClient = new FirebaseClient("https://cursosmovil-2b6d6-default-rtdb.firebaseio.com/");
-                var cursos = await firebaseClient
-                    .Child("cursos")
-                    .OnceAsync<Cursos>();
+                client.Child("cursos")
+                      .AsObservable<Cursos>()
+                      .Subscribe(curso =>
+                      {
+                          if (curso.Object != null)
+                          {
+                              // Verificar si el curso ya existe en la lista
+                              var cursoExistente = CursosDisponibles.FirstOrDefault(c => c.Name == curso.Object.Name);
 
-                foreach (var curso in cursos)
-                {
-                    // Añadir cada curso a la colección
-                    CursosDisponibles.Add(new Cursos
-                    {
-                        Name = curso.Object.Name,
-                        Docente = curso.Object.Docente,
-                        Image = curso.Object.Image,
-                        Descripcion = curso.Object.Descripcion,
-                        Duracion = curso.Object.Duracion,
-                        Nivel = curso.Object.Nivel,
-                        Requisitos = curso.Object.Requisitos
-                    });
-                }
+                              if (cursoExistente == null)
+                              {
+                                  // Agregar nuevo curso si no existe
+                                  curso.Object.MostrarDetalles = false;
+                                  CursosDisponibles.Add(curso.Object);
+                              }
+                              else
+                              {
+                                  // Actualizar los detalles del curso si ya existe
+                                  int index = CursosDisponibles.IndexOf(cursoExistente);
+                                  CursosDisponibles[index] = curso.Object;
+                              }
+                          }
+                      },
+                      ex => Console.WriteLine($"Error al cargar cursos en tiempo real: {ex.Message}"));
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", $"No se pudieron cargar los cursos: {ex.Message}", "OK");
+                Console.WriteLine($"Error al configurar la observación de cursos: {ex.Message}");
+            }
+        }
+
+
+        private void ToggleVerMas(Cursos curso)
+        {
+            if (curso != null)
+            {
+                curso.MostrarDetalles = !curso.MostrarDetalles;
             }
         }
     }

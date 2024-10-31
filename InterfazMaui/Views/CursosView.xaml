@@ -45,10 +45,6 @@
                                         Margin="0,10,0,0"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.ToggleVerMasCommand}"
                                         CommandParameter="{Binding}" />
-
-
-
-
                             </VerticalStackLayout>
                         </Border>
                     </Grid>
