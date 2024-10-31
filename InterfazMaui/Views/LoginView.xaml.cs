@@ -42,6 +42,10 @@ public partial class LoginView : ContentPage
 
             if (user != null)
             {
+
+                // Almacena el UID en las preferencias
+                Preferences.Set("UserId", user.LocalId);
+
                 // Conectarse a la base de datos Firebase para obtener el rol del usuario
                 var firebaseClient = new FirebaseClient("https://cursosmovil-2b6d6-default-rtdb.firebaseio.com/");
                 var userData = await firebaseClient

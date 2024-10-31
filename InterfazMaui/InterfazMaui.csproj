@@ -42,6 +42,7 @@
 		<None Remove="Resources\Images\chiha_tachi.png" />
 		<None Remove="Resources\Images\dibujo.jpeg" />
 		<None Remove="Resources\Images\Electricidad.jpg" />
+		<None Remove="Resources\Images\foto_perfil.png" />
 		<None Remove="Resources\Images\graduados.png" />
 		<None Remove="Resources\Images\imagen1.png" />
 		<None Remove="Resources\Images\imagen2.png" />

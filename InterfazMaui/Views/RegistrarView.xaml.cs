@@ -89,6 +89,9 @@ namespace InterfazMaui.Views
                 {
                     await DisplayAlert("Éxito", $"Usuario creado exitosamente: {user.Email}", "OK");
 
+                    // Almacenar el UserId en las preferencias
+                    Preferences.Set("UserId", user.LocalId);
+
                     // Crear el modelo de usuario y almacenar los datos
                     UserModel newUser = new UserModel
                     {

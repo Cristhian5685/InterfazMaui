@@ -102,6 +102,7 @@
                         <Entry x:Name="passwordEntry"
                             Grid.Column="1"
                          Placeholder="CONTRASEÑA"
+                         Text="12345678"
                          IsPassword="True"
                          VerticalOptions="Center"
                          TextColor="Black"/>
@@ -129,6 +130,7 @@
                         <Entry x:Name="confirmPasswordEntry"
                             Grid.Column="1"
                          Placeholder="CONFIRMAR CONTRASEÑA"
+                         Text="12345678"      
                          IsPassword="True"
                          VerticalOptions="Center"
                          TextColor="Black"/>

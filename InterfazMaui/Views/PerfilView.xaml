@@ -1,57 +1,63 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InterfazMaui.Views.PerfilView"
              Title="Perfil">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20" BackgroundColor="#0d0118">
-
-            <!-- Sección de Información Personal -->
-            <Frame CornerRadius="10" Padding="15" BackgroundColor="#311b45">
-                <VerticalStackLayout Spacing="10">
-                    <!-- Foto de perfil -->
-                    <Image Source="timate_inja.png"
-                           HeightRequest="120"
-                           WidthRequest="120"
-                           Aspect="AspectFill"
-                           HorizontalOptions="Center"/>
-
-                    <!-- Nombre del Usuario -->
-                    <Label Text="{Binding NombreCompleto}"
-                           FontAttributes="Bold"
-                           FontSize="Large"
-                           TextColor="White"
-                           HorizontalOptions="Center"/>
-
-                    <!-- Correo del Usuario -->
-                    <Label Text="{Binding Email}"
-                           FontSize="Medium"
-                           TextColor="#ac9db9"
-                           HorizontalOptions="Center"/>
-
-                    <!-- Especialidad del Docente, solo visible si es docente -->
-                    <Label Text="{Binding Especialidad}"
-                           FontSize="Medium"
-                           TextColor="#ac9db9"
-                           IsVisible="{Binding IsDocente}"
-                           HorizontalOptions="Center"/>
-
-                    <!-- Botón para Editar Perfil -->
-                    <Button Text="Editar Perfil" 
-                            Clicked="OnEditProfileClicked"
-                            BackgroundColor="#6e557c"
-                            TextColor="White"/>
-                </VerticalStackLayout>
+            <Frame CornerRadius="60"
+                   Padding="0"
+                   BackgroundColor="#311b45"
+                   HeightRequest="120"
+                   WidthRequest="120"
+                   HorizontalOptions="Center">
+                <Image x:Name="perfilImage"
+                       Source="{Binding FotoPerfilUrl}"
+                       Aspect="AspectFill"
+                       HeightRequest="120"
+                       WidthRequest="120"
+                       HorizontalOptions="Center"/>
             </Frame>
 
-            <!-- Botón para Cerrar Sesión -->
+            <Button Text="Cambiar Foto de Perfil"
+                    Clicked="OnChangePhotoButtonClicked"
+                    BackgroundColor="#6e557c"
+                    TextColor="White"/>
+
+            <Button Text="Borrar Foto" Clicked="OnDeletePhotoButtonClicked" BackgroundColor="#FF6F61" TextColor="White"/>
+
+
+
+            <Label x:Name="nombreLabel"
+                   Text=""
+                   FontAttributes="Bold"
+                   FontSize="Large"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+
+            <Label x:Name="emailLabel"
+                   Text=""
+                   FontSize="Medium"
+                   TextColor="#ac9db9"
+                   HorizontalOptions="Center"/>
+
+            <Label x:Name="especialidadLabel"
+                   Text=""
+                   FontSize="Medium"
+                   TextColor="#ac9db9"
+                   IsVisible="False"
+                   HorizontalOptions="Center"/>
+
+            <!--<Button Text="Editar Perfil"
+                    Clicked="OnEditProfileClicked"
+                    BackgroundColor="#6e557c"
+                    TextColor="White"/>-->
+
             <Button Text="Cerrar Sesión"
                     BackgroundColor="Red"
                     TextColor="White"
                     Clicked="OnLogoutClicked"
                     HorizontalOptions="FillAndExpand"
                     HeightRequest="50"/>
-
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
