@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InterfazMaui.Views.EstudiantesCursoView"
+             Title="EstudiantesCursoView">
+    <Grid BackgroundColor="#0d0118">
+        <!-- Lista de estudiantes -->
+        <CollectionView ItemsSource="{Binding EstudiantesInscritos}"
+                        Margin="20"
+                       >
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" BackgroundColor="#311b45" CornerRadius="10" Margin="5">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding NombreCompleto}" FontSize="Large" TextColor="White" FontAttributes="Bold"/>
+                            <Label Text="{Binding Email}" FontSize="Medium" TextColor="#ac9db9"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>

@@ -23,7 +23,7 @@
                        PlaceholderColor="#ac9db9"/>
             </Frame>
 
-            <!-- Campo Docente -->
+            <!-- Campo Docente --><!--
             <Frame CornerRadius="25" BackgroundColor="#311b45" Padding="10" HasShadow="True">
                 <Entry x:Name="DocenteEntry"
                        Placeholder="Docente"
@@ -31,7 +31,7 @@
                        BackgroundColor="Transparent"
                        TextColor="White"
                        PlaceholderColor="#ac9db9"/>
-            </Frame>
+            </Frame>-->
 
             <!-- Campo URL de Imagen -->
             <Frame CornerRadius="25" BackgroundColor="#311b45" Padding="10" HasShadow="True">

@@ -29,10 +29,6 @@
                 <Entry x:Name="EmailEntry" Placeholder="Correo Electrónico" TextColor="White" />
             </Frame>
 
-            <Button Text="Confirmar Matrícula" 
-                    BackgroundColor="#512DA8" 
-                    TextColor="White" 
-                    Clicked="OnConfirmarMatriculaClicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -4,6 +4,7 @@ public class Cursos : INotifyPropertyChanged
 {
     private bool _mostrarDetalles;
 
+    
     public string Name { get; set; }
     public string Docente { get; set; }
     public string Image { get; set; }
@@ -11,6 +12,11 @@ public class Cursos : INotifyPropertyChanged
     public string Duracion { get; set; }
     public string Nivel { get; set; }
     public string Requisitos { get; set; }
+
+    // Propiedad adicional para el contador de estudiantes inscritos
+    public int EstudiantesInscritos { get; set; }
+
+    public string DocenteId { get; set; }
 
     public bool MostrarDetalles
     {
@@ -35,3 +41,7 @@ public class Cursos : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
+
+
+
+

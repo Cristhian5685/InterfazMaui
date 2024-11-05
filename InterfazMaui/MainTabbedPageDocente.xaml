@@ -9,11 +9,11 @@
             BarBackground="#311b45"
             BarTextColor="#ac9db9"
             Title="MainTabbedPage">
-    
-    
-    <local:MainPage Title="Inicio"/>
-    <views:CursosView Title="Cursos"/>
+
+
+  
     <views:CrearView Title="Crear" />
+    <views:CursosDocenteView Title="Mis Cursos" />
     <views:PerfilView Title="Perfil" />
 
     

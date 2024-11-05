@@ -39,6 +39,7 @@ namespace InterfazMaui.Views
             }
         }
 
+
         private async void OnCrearCursoClicked(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(imageUrl))
@@ -47,20 +48,42 @@ namespace InterfazMaui.Views
                 return;
             }
 
-            // Crear una nueva instancia de Cursos
+            // Obtener el UserId del docente autenticado
+            var docenteId = Preferences.Get("UserId", string.Empty);
+            if (string.IsNullOrEmpty(docenteId))
+            {
+                await DisplayAlert("Error", "No se pudo obtener el ID del docente.", "OK");
+                return;
+            }
+
+            // Recuperar el nombre del docente desde Firebase
+            var docenteData = await client
+                .Child("users")
+                .Child(docenteId)
+                .OnceSingleAsync<UserModel>();
+
+            if (docenteData == null)
+            {
+                await DisplayAlert("Error", "No se pudo obtener el nombre del docente.", "OK");
+                return;
+            }
+
+            // Crear una nueva instancia de Cursos con los datos del docente
             var nuevoCurso = new Cursos
             {
                 Name = NameEntry.Text,
-                Docente = DocenteEntry.Text,
-                Image = imageUrl, // URL de la imagen subida
+                Docente = docenteData.NombreCompleto, // Nombre del docente
+                DocenteId = docenteId,                // ID del docente
+                Image = imageUrl,                     // URL de la imagen subida
                 Descripcion = DescripcionEditor.Text,
                 Duracion = DuracionEntry.Text,
                 Nivel = NivelPicker.SelectedItem?.ToString(),
-                Requisitos = RequisitosEditor.Text
+                Requisitos = RequisitosEditor.Text,
             };
 
             try
             {
+                // Guardar el curso en Firebase
                 await client.Child("cursos").PostAsync(nuevoCurso);
                 await DisplayAlert("Éxito", "El curso ha sido creado con éxito.", "OK");
 
@@ -73,11 +96,11 @@ namespace InterfazMaui.Views
             }
         }
 
-        // Método para limpiar los campos de entrada
+
         private void LimpiarCampos()
         {
             NameEntry.Text = string.Empty;
-            DocenteEntry.Text = string.Empty;
+            //DocenteEntry.Text = string.Empty;
             CursoImage.Source = null; // Limpia la imagen seleccionada
             DescripcionEditor.Text = string.Empty;
             DuracionEntry.Text = string.Empty;
