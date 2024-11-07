@@ -31,7 +31,6 @@ namespace InterfazMaui
         }
 
 
-
         //private void CargarCursosDesdeFirebase()
         //{
         //    try
@@ -46,30 +45,34 @@ namespace InterfazMaui
         //            {
         //                if (curso.Object != null)
         //                {
-        //                    // Verificar si el curso ya existe en la lista
-        //                    var cursoExistente = CursosDisponibles.FirstOrDefault(c => c.Name == curso.Object.Name);
+        //                    // Ejecutar en el hilo principal para actualizar la UI
+        //                    Device.BeginInvokeOnMainThread(() =>
+        //                    {
+        //                        // Verificar si el curso ya existe en la lista
+        //                        var cursoExistente = CursosDisponibles.FirstOrDefault(c => c.Name == curso.Object.Name);
 
-        //                    if (cursoExistente == null)
-        //                    {
-        //                        // Si el curso no existe, agregarlo a la lista
-        //                        CursosDisponibles.Add(new Cursos
+        //                        if (cursoExistente == null)
         //                        {
-        //                            Name = curso.Object.Name,
-        //                            Docente = curso.Object.Docente,
-        //                            Image = curso.Object.Image,
-        //                            Descripcion = curso.Object.Descripcion,
-        //                            Duracion = curso.Object.Duracion,
-        //                            Nivel = curso.Object.Nivel,
-        //                            Requisitos = curso.Object.Requisitos,
-        //                            MostrarDetalles = false
-        //                        });
-        //                    }
-        //                    else
-        //                    {
-        //                        // Si el curso ya existe, actualizar sus detalles
-        //                        int index = CursosDisponibles.IndexOf(cursoExistente);
-        //                        CursosDisponibles[index] = curso.Object;
-        //                    }
+        //                            // Si el curso no existe, agregarlo a la lista
+        //                            CursosDisponibles.Add(new Cursos
+        //                            {
+        //                                Name = curso.Object.Name,
+        //                                Docente = curso.Object.Docente,
+        //                                Image = curso.Object.Image,
+        //                                Descripcion = curso.Object.Descripcion,
+        //                                Duracion = curso.Object.Duracion,
+        //                                Nivel = curso.Object.Nivel,
+        //                                Requisitos = curso.Object.Requisitos,
+        //                                MostrarDetalles = false
+        //                            });
+        //                        }
+        //                        else
+        //                        {
+        //                            // Si el curso ya existe, actualizar sus detalles
+        //                            int index = CursosDisponibles.IndexOf(cursoExistente);
+        //                            CursosDisponibles[index] = curso.Object;
+        //                        }
+        //                    });
         //                }
         //            },
         //            ex => Console.WriteLine($"Error al cargar cursos en tiempo real: {ex.Message}"));
@@ -97,29 +100,42 @@ namespace InterfazMaui
                             // Ejecutar en el hilo principal para actualizar la UI
                             Device.BeginInvokeOnMainThread(() =>
                             {
-                                // Verificar si el curso ya existe en la lista
-                                var cursoExistente = CursosDisponibles.FirstOrDefault(c => c.Name == curso.Object.Name);
+                                // Verificar el tipo de evento
+                                if (curso.EventType == Firebase.Database.Streaming.FirebaseEventType.InsertOrUpdate)
+                                {
+                                    // Verificar si el curso ya existe en la lista
+                                    var cursoExistente = CursosDisponibles.FirstOrDefault(c => c.Name == curso.Object.Name);
 
-                                if (cursoExistente == null)
-                                {
-                                    // Si el curso no existe, agregarlo a la lista
-                                    CursosDisponibles.Add(new Cursos
+                                    if (cursoExistente == null)
                                     {
-                                        Name = curso.Object.Name,
-                                        Docente = curso.Object.Docente,
-                                        Image = curso.Object.Image,
-                                        Descripcion = curso.Object.Descripcion,
-                                        Duracion = curso.Object.Duracion,
-                                        Nivel = curso.Object.Nivel,
-                                        Requisitos = curso.Object.Requisitos,
-                                        MostrarDetalles = false
-                                    });
+                                        // Si el curso no existe, agregarlo a la lista
+                                        CursosDisponibles.Add(new Cursos
+                                        {
+                                            Name = curso.Object.Name,
+                                            Docente = curso.Object.Docente,
+                                            Image = curso.Object.Image,
+                                            Descripcion = curso.Object.Descripcion,
+                                            Duracion = curso.Object.Duracion,
+                                            Nivel = curso.Object.Nivel,
+                                            Requisitos = curso.Object.Requisitos,
+                                            MostrarDetalles = false
+                                        });
+                                    }
+                                    else
+                                    {
+                                        // Si el curso ya existe, actualizar sus detalles
+                                        int index = CursosDisponibles.IndexOf(cursoExistente);
+                                        CursosDisponibles[index] = curso.Object;
+                                    }
                                 }
-                                else
+                                else if (curso.EventType == Firebase.Database.Streaming.FirebaseEventType.Delete)
                                 {
-                                    // Si el curso ya existe, actualizar sus detalles
-                                    int index = CursosDisponibles.IndexOf(cursoExistente);
-                                    CursosDisponibles[index] = curso.Object;
+                                    // Manejar la eliminación del curso
+                                    var cursoAEliminar = CursosDisponibles.FirstOrDefault(c => c.Name == curso.Object.Name);
+                                    if (cursoAEliminar != null)
+                                    {
+                                        CursosDisponibles.Remove(cursoAEliminar);
+                                    }
                                 }
                             });
                         }

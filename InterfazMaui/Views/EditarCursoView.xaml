@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InterfazMaui.Views.CrearView"
-             Title="CrearView">
+             x:Class="InterfazMaui.Views.EditarCursoView"
+             Title="Editar Curso">
     <ScrollView BackgroundColor="#0d0118">
         <VerticalStackLayout Padding="20" Spacing="20">
 
-            <Label Text="Crear nuevo curso"
+            <Label Text="Editar curso"
                    FontSize="24"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
@@ -23,15 +23,13 @@
                        PlaceholderColor="#ac9db9"/>
             </Frame>
 
-           
-
-            <!-- Campo URL de Imagen -->
+            <!-- Campo Imagen -->
             <Frame CornerRadius="25" BackgroundColor="#311b45" Padding="10" HasShadow="True">
                 <StackLayout>
                     <Button Text="Seleccionar Imagen" 
-                Clicked="OnSeleccionarImagenClicked" 
-                BackgroundColor="#512DA8"
-                TextColor="White"/>
+                            Clicked="OnSeleccionarImagenClicked" 
+                            BackgroundColor="#512DA8"
+                            TextColor="White"/>
                     <Image x:Name="CursoImage" HeightRequest="200" />
                 </StackLayout>
             </Frame>
@@ -85,9 +83,9 @@
                         PlaceholderColor="#ac9db9"/>
             </Frame>
 
-            <!-- Botón para crear el curso -->
-            <Button Text="Crear Curso"
-                    Clicked="OnCrearCursoClicked"
+            <!-- Botón para guardar cambios -->
+            <Button Text="Guardar Cambios"
+                    Clicked="OnGuardarCambiosClicked"
                     HorizontalOptions="FillAndExpand"
                     BackgroundColor="#512DA8"
                     TextColor="White"
