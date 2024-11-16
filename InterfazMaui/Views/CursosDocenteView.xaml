@@ -5,45 +5,60 @@
              x:Class="InterfazMaui.Views.CursosDocenteView"
              Title="CursosDocenteView">
 
-    <Grid BackgroundColor="#0d0118">
-        <CollectionView ItemsSource="{Binding CursosDocente}" Margin="20">
+    <Grid BackgroundColor="#0d0118" Padding="20">
+        <CollectionView ItemsSource="{Binding CursosDocente}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Padding="10" BackgroundColor="#311b45" CornerRadius="10" Margin="5">
-                        <VerticalStackLayout>
+                    <Frame Padding="15" BackgroundColor="#311b45" CornerRadius="15" Margin="5" HasShadow="True">
+                        <VerticalStackLayout Spacing="8">
+                            <!-- Información del curso -->
                             <Label Text="{Binding Name}" FontSize="Large" TextColor="White" FontAttributes="Bold"/>
                             <Label Text="{Binding Nivel}" FontSize="Medium" TextColor="#ac9db9"/>
                             <Label Text="{Binding EstudiantesInscritos, StringFormat='Estudiantes Inscritos: {0}'}" 
-                           FontSize="Medium" TextColor="#ac9db9"/>
+                                   FontSize="Medium" TextColor="#ac9db9"/>
 
-                            <!-- Botón para ver estudiantes -->
-                            <Button Text="Ver Estudiantes"
-                            BackgroundColor="#512DA8"
-                            TextColor="White"
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.VerEstudiantesCommand}"
-                            CommandParameter="{Binding .}" />
+                            <!-- Botones con iconos -->
+                            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                                <!-- Botón para ver estudiantes -->
+                                <Button Text="Ver Estudiantes" 
+                                        BackgroundColor="#512DA8" 
+                                        TextColor="White" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.VerEstudiantesCommand}" 
+                                        CommandParameter="{Binding .}"
+                                        ImageSource="estudiante.png"
+                                        ContentLayout="Left, 5"
+                                         WidthRequest="85"
+                                         HeightRequest="40"/>
 
-                            <!-- Botón para editar curso -->
-                            <Button Text="Editar"
-                            BackgroundColor="#007ACC"
-                            TextColor="White"
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditarCursoCommand}"
-                            CommandParameter="{Binding .}" />
+                                <!-- Botón para editar curso -->
+                                <Button Text="Editar" 
+                                        BackgroundColor="#007ACC" 
+                                        TextColor="White" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditarCursoCommand}" 
+                                        CommandParameter="{Binding .}"
+                                        ImageSource="editar.svg"
+                                        ContentLayout="Left, 5"
+                                         WidthRequest="95"
+                                         HeightRequest="40"/>
 
-                            <!-- Botón para eliminar curso -->
-                            <Button Text="Eliminar"
-                            BackgroundColor="#E53935"
-                            TextColor="White"
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarCursoCommand}"
-                            CommandParameter="{Binding .}" />
+                                <!-- Botón para eliminar curso -->
+                                <Button Text="Eliminar" 
+                                        BackgroundColor="#E53935" 
+                                        TextColor="White" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarCursoCommand}" 
+                                        CommandParameter="{Binding .}"
+                                        ImageSource="eliminar.svg"
+                                        ContentLayout="Left,5"
+                                         WidthRequest="100"
+                                         HeightRequest="40"/>
+                            </HorizontalStackLayout>
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
     </Grid>
 </ContentPage>

@@ -1,8 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:local="clr-namespace:InterfazMaui.Converters"
              x:Class="InterfazMaui.MainPage"
              Title="MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:BoolToInscribirTextConverter x:Key="BoolToInscribirTextConverter" />
+            <local:BoolToInscribirCommandConverter x:Key="BoolToInscribirCommandConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
 
     <Grid BackgroundColor="#0d0118" RowDefinitions=".05*,.1*,.45*,.05*,.05*,.3*">
 
@@ -28,7 +37,7 @@
 
         <!-- Cursos matriculados -->
         <Label Grid.Row="2"
-               Text="Cursos disponibles:"
+               Text="Cursos inscritos:"
                FontSize="18"
                FontAttributes="Bold"
                TextColor="White"
@@ -39,7 +48,7 @@
         <CarouselView 
             Grid.Row="2"
             IndicatorView="indicatorView"
-            ItemsSource="{Binding CursosDisponibles}"
+            ItemsSource="{Binding CursosMatriculados}"
             PeekAreaInsets="40">
 
             <CarouselView.ItemsLayout>
@@ -149,16 +158,28 @@
                                    Source="{Binding Image}"/>
                         </Border>
 
-                        <!-- Botón Matricularme -->
-                        <Button Text="Matricularme"
-                                Clicked="OnMatricularButtonClicked"
-                                HorizontalOptions="Center"
+                    
+
+                        <!--<Button Text="Inscribirse"
                                 BackgroundColor="#512DA8"
                                 TextColor="White"
                                 CornerRadius="10"
-                                HeightRequest="40"
+                                HorizontalOptions="Center"
                                 WidthRequest="125"
+                                HeightRequest="40"
+                                Margin="0,150,0,0"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.InscribirseCommand}"
+                                CommandParameter="{Binding}" />-->
+
+                        <Button Text="{Binding EstaInscrito, Converter={StaticResource BoolToInscribirTextConverter}}"
+                                BackgroundColor="#512DA8"
+                                TextColor="White"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.ToggleInscripcionCommand}"
+                                CommandParameter="{Binding}"
+                                WidthRequest="100"
+                                HeightRequest="40"
                                 Margin="0,150,0,0"/>
+
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

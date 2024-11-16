@@ -17,14 +17,13 @@ namespace InterfazMaui.Views
             CargarEstudiantesInscritos(cursoId);
         }
 
+
+
         private void CargarEstudiantesInscritos(string cursoId)
         {
-            // Limpiar la lista actual de estudiantes
             EstudiantesInscritos.Clear();
 
-            // Obtener la lista de UIDs de los estudiantes inscritos en el curso especificado
-            var inscripciones = client
-                .Child("inscripciones")
+            client.Child("inscripciones")
                 .Child(cursoId)
                 .AsObservable<string>()
                 .Subscribe(async inscripcion =>
@@ -33,16 +32,16 @@ namespace InterfazMaui.Views
                         return;
 
                     string estudianteUID = inscripcion.Object;
-
-                    // Buscar los detalles del estudiante en el nodo de usuarios usando el UID
                     var estudianteData = await client
                         .Child("users")
                         .Child(estudianteUID)
                         .OnceSingleAsync<Estudiante>();
 
-                    // Agregar el estudiante a la lista si se encontraron sus datos
                     if (estudianteData != null)
                     {
+                        // Asegurar que se asigne la imagen predeterminada si no hay una URL
+                        estudianteData.FotoPerfilUrl ??= "avatar.png";
+
                         Device.BeginInvokeOnMainThread(() =>
                         {
                             EstudiantesInscritos.Add(estudianteData);
@@ -50,8 +49,6 @@ namespace InterfazMaui.Views
                     }
                 });
         }
-  
-
 
 
 
@@ -61,6 +58,7 @@ namespace InterfazMaui.Views
     {
         public string NombreCompleto { get; set; }
         public string Email { get; set; }
+        public string FotoPerfilUrl { get; set; } = "avatar.png";
 
     }
 }

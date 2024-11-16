@@ -46,7 +46,7 @@
                     <Entry x:Name="emailEntry"
                         Grid.Column="1"
                          Placeholder="EMAIL"
-                         Text="jesus14@gmail.com"
+                         Text="mari30@gmail.com"
                          VerticalOptions="Center"
                          TextColor="Black"/>
 

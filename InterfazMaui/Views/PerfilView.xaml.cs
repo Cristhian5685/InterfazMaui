@@ -10,7 +10,9 @@ namespace InterfazMaui.Views
     {
         private FirebaseClient firebaseClient;
         private FirebaseAuthProvider authProvider;
-
+        public Command EditarNombreCommand { get; }
+        //public Command EditarEmailCommand { get; }
+        public Command EditarEspecialidadCommand { get; }
         public PerfilView()
         {
             InitializeComponent();
@@ -18,6 +20,40 @@ namespace InterfazMaui.Views
             firebaseClient = new FirebaseClient("https://cursosmovil-2b6d6-default-rtdb.firebaseio.com/"); // Cambia a la URL base de tu base de datos
             authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyDHQIM8REv5OKqzIMJ-vc_jwyh2viBZqBY")); // Reemplaza con tu API key
             LoadUserData();
+            EditarNombreCommand = new Command(async () => await EditarCampo("Nombre Completo", nombreLabel));
+            //EditarEmailCommand = new Command(async () => await EditarCampo("Correo Electrónico", emailLabel));
+            EditarEspecialidadCommand = new Command(async () => await EditarCampo("Especialidad", especialidadLabel));
+            BindingContext = this; // Asegúrate de que los comandos estén disponibles en el XAML
+        }
+
+        private async Task EditarCampo(string titulo, Label campo)
+        {
+            string nuevoValor = await DisplayPromptAsync(titulo, $"Introduce el nuevo {titulo.ToLower()}", initialValue: campo.Text);
+            if (!string.IsNullOrWhiteSpace(nuevoValor))
+            {
+                campo.Text = nuevoValor; // Actualiza el valor en la UI temporalmente
+                await GuardarCampoEnFirebase(titulo, nuevoValor); // Actualiza el valor en Firebase
+            }
+        }
+
+        private async Task GuardarCampoEnFirebase(string campo, string valor)
+        {
+            try
+            {
+                string userId = Preferences.Get("UserId", string.Empty);
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    await firebaseClient
+                        .Child("users")
+                        .Child(userId)
+                        .Child(campo.Replace(" ", "")) // Para que coincida con la estructura de datos en Firebase
+                        .PutAsync(valor);
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"No se pudo actualizar el {campo.ToLower()}: {ex.Message}", "OK");
+            }
         }
 
         protected override void OnAppearing()
@@ -75,7 +111,7 @@ namespace InterfazMaui.Views
                     .DeleteAsync();
 
                 // Establecer una imagen predeterminada en la interfaz
-                perfilImage.Source = "foto_perfil.png"; // Cambia a tu imagen predeterminada
+                perfilImage.Source = "avatar.png"; // Cambia a tu imagen predeterminada
             }
         }
 
@@ -101,52 +137,92 @@ namespace InterfazMaui.Views
         }
 
 
-
-
-
-
-
-
-
-
         // Método para cargar los datos del usuario desde Firebase
+
+        //private async void LoadUserData()
+        //{
+        //    try
+        //    {
+        //        // Obtén el UID del usuario almacenado
+        //        string userId = Preferences.Get("UserId", string.Empty);
+
+        //        if (!string.IsNullOrEmpty(userId))
+        //        {
+        //            // Usa el UID para recuperar los datos del usuario desde Firebase
+        //            var userData = await firebaseClient
+        //                .Child("users") // Asegúrate de que este es el nodo correcto en tu base de datos
+        //                .Child(userId) // Utiliza el UID del usuario
+        //                .OnceSingleAsync<UserModel>();
+
+        //            // Muestra los datos en la interfaz
+        //            nombreLabel.Text = userData.NombreCompleto;
+        //            emailLabel.Text = userData.Email;
+
+
+        //            // Asigna la URL de la foto de perfil si existe
+        //            if (!string.IsNullOrEmpty(userData.FotoPerfilUrl))
+        //            {
+        //                perfilImage.Source = userData.FotoPerfilUrl;
+        //            }
+        //            else
+        //            {
+        //                perfilImage.Source = "avatar.png"; // Usa una imagen predeterminada si no hay URL
+
+        //            }
+
+        //            if (!string.IsNullOrEmpty(userData.Especialidad))
+        //            {
+        //                especialidadLabel.Text = userData.Especialidad;
+        //                especialidadLabel.IsVisible = true;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            await DisplayAlert("Error", "No se encontró ningún usuario autenticado.", "OK");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await DisplayAlert("Error", $"No se pudieron cargar los datos del perfil: {ex.Message}", "OK");
+        //    }
+        //}
 
         private async void LoadUserData()
         {
             try
             {
-                // Obtén el UID del usuario almacenado
                 string userId = Preferences.Get("UserId", string.Empty);
 
                 if (!string.IsNullOrEmpty(userId))
                 {
-                    // Usa el UID para recuperar los datos del usuario desde Firebase
                     var userData = await firebaseClient
-                        .Child("users") // Asegúrate de que este es el nodo correcto en tu base de datos
-                        .Child(userId) // Utiliza el UID del usuario
+                        .Child("users")
+                        .Child(userId)
                         .OnceSingleAsync<UserModel>();
 
-                    // Muestra los datos en la interfaz
+                    // Actualiza los datos en la interfaz
                     nombreLabel.Text = userData.NombreCompleto;
                     emailLabel.Text = userData.Email;
 
-
-                    // Asigna la URL de la foto de perfil si existe
                     if (!string.IsNullOrEmpty(userData.FotoPerfilUrl))
                     {
                         perfilImage.Source = userData.FotoPerfilUrl;
                     }
                     else
                     {
-                        perfilImage.Source = "foto_perfil.png"; // Usa una imagen predeterminada si no hay URL
-
+                        perfilImage.Source = "avatar.png"; // Imagen predeterminada
                     }
 
+                    // Especialidad
                     if (!string.IsNullOrEmpty(userData.Especialidad))
                     {
                         especialidadLabel.Text = userData.Especialidad;
-                        especialidadLabel.IsVisible = true;
                     }
+
+                    // Controlar la visibilidad basado en el rol
+                    bool isDocente = userData.Role == "Docente";
+                    especialidadLabel.IsVisible = isDocente;
+                    especialidadFrame.IsVisible = isDocente; // Asegúrate de nombrar tu Frame en el XAML
                 }
                 else
                 {

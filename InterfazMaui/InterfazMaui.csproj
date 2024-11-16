@@ -35,35 +35,25 @@
 		<None Remove="Resources\Fonts\Font Awesome 6 Free-Solid-900.otf" />
 		<None Remove="Resources\Fonts\fontello.ttf" />
 		<None Remove="Resources\Fonts\marke.ttf" />
-		<None Remove="Resources\Images\a.webp" />
-		<None Remove="Resources\Images\akatsuki.png" />
-		<None Remove="Resources\Images\angekyou_haringan.png" />
-		<None Remove="Resources\Images\arutoasuke.png" />
-		<None Remove="Resources\Images\chiha_tachi.png" />
-		<None Remove="Resources\Images\dibujo.jpeg" />
-		<None Remove="Resources\Images\Electricidad.jpg" />
-		<None Remove="Resources\Images\foto_perfil.png" />
+		<None Remove="Resources\Images\avatar.png" />
+		<None Remove="Resources\Images\camera.svg" />
+		<None Remove="Resources\Images\cerrar.svg" />
+		<None Remove="Resources\Images\editar.svg" />
+		<None Remove="Resources\Images\eliminar.svg" />
+		<None Remove="Resources\Images\estudiante.png" />
+		<None Remove="Resources\Images\flaticon_user.png" />
 		<None Remove="Resources\Images\graduados.png" />
-		<None Remove="Resources\Images\imagen1.png" />
-		<None Remove="Resources\Images\imagen2.png" />
-		<None Remove="Resources\Images\imagen3.png" />
-		<None Remove="Resources\Images\imagen4.png" />
-		<None Remove="Resources\Images\imagen5.png" />
-		<None Remove="Resources\Images\katsuki_logo.png" />
 		<None Remove="Resources\Images\logo.png" />
-		<None Remove="Resources\Images\moto.jpg" />
-		<None Remove="Resources\Images\seguridad.png" />
-		<None Remove="Resources\Images\timate_inja.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.1" />
 		<PackageReference Include="Firebase.Auth" Version="1.0.0" />
 		<PackageReference Include="Firebase.Database" Version="1.0.0" />
 		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.92" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.92" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>

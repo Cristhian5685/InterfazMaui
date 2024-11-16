@@ -4,24 +4,42 @@
              x:Class="InterfazMaui.Views.EstudiantesCursoView"
              Title="EstudiantesCursoView">
     <Grid BackgroundColor="#0d0118">
+        <Label Text="Mis Estudiantes"
+       FontSize="24"
+       FontAttributes="Bold"
+       HorizontalOptions="Center"
+       TextColor="White"
+       Margin="0,10,0,20"/>
+
         <!-- Lista de estudiantes -->
-        <CollectionView ItemsSource="{Binding EstudiantesInscritos}"
-                        Margin="20"
-                       >
+        <CollectionView ItemsSource="{Binding EstudiantesInscritos}" Margin="20,60,20,20">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Padding="10" BackgroundColor="#311b45" CornerRadius="10" Margin="5">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding NombreCompleto}" FontSize="Large" TextColor="White" FontAttributes="Bold"/>
-                            <Label Text="{Binding Email}" FontSize="Medium" TextColor="#ac9db9"/>
-                        </VerticalStackLayout>
+                        <HorizontalStackLayout Spacing="10">
+                            <!-- Imagen de perfil del estudiante -->
+                            <Image Source="{Binding FotoPerfilUrl}"
+                                   WidthRequest="50" HeightRequest="50"
+                                   Aspect="AspectFill"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start">
+                                <!-- Clip para hacer la imagen circular -->
+                                <Image.Clip>
+                                    <EllipseGeometry Center="25,25" RadiusX="25" RadiusY="25"/>
+                                </Image.Clip>
+                            </Image>
+                            <!-- Nombre y correo del estudiante -->
+                            <VerticalStackLayout>
+                                <Label Text="{Binding NombreCompleto}" FontSize="Large" TextColor="White" FontAttributes="Bold"/>
+                                <Label Text="{Binding Email}" FontSize="Medium" TextColor="#ac9db9"/>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
     </Grid>
-
 </ContentPage>

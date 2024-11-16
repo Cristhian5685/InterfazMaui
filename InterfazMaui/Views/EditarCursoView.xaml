@@ -46,13 +46,19 @@
             </Frame>
 
             <!-- Campo Duración -->
+            <!-- Campo Duración -->
             <Frame CornerRadius="25" BackgroundColor="#311b45" Padding="10" HasShadow="True">
-                <Entry x:Name="DuracionEntry"
-                       Placeholder="Duración del Curso"
-                       HorizontalOptions="FillAndExpand"
-                       BackgroundColor="Transparent"
-                       TextColor="White"
-                       PlaceholderColor="#ac9db9"/>
+                <Picker x:Name="DuracionPicker" Title="Duración del Curso" BackgroundColor="Transparent" TextColor="White">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>1 Semana</x:String>
+                            <x:String>1 Mes</x:String>
+                            <x:String>3 Meses</x:String>
+                            <x:String>6 Meses</x:String>
+                            <x:String>1 Año</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
             </Frame>
 
             <!-- Campo Nivel -->

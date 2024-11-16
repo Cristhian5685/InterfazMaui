@@ -3,6 +3,7 @@
 public class Cursos : INotifyPropertyChanged
 {
     private bool _mostrarDetalles;
+    private bool _estaInscrito;
     private int _estudiantesInscritos;
 
     public string Name { get; set; }
@@ -13,6 +14,19 @@ public class Cursos : INotifyPropertyChanged
     public string Nivel { get; set; }
     public string Requisitos { get; set; }
     public string DocenteId { get; set; }
+
+    public bool EstaInscrito
+    {
+        get => _estaInscrito;
+        set
+        {
+            if (_estaInscrito != value)
+            {
+                _estaInscrito = value;
+                OnPropertyChanged(nameof(EstaInscrito));
+            }
+        }
+    }
 
     // Propiedad con notificación de cambios para contar los estudiantes inscritos
     public int EstudiantesInscritos
@@ -51,3 +65,5 @@ public class Cursos : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
+
+

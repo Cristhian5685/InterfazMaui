@@ -76,7 +76,7 @@ namespace InterfazMaui.Views
                 DocenteId = docenteId,                // ID del docente
                 Image = imageUrl,                     // URL de la imagen subida
                 Descripcion = DescripcionEditor.Text,
-                Duracion = DuracionEntry.Text,
+                Duracion = DuracionPicker.SelectedItem?.ToString(),
                 Nivel = NivelPicker.SelectedItem?.ToString(),
                 Requisitos = RequisitosEditor.Text,
             };
@@ -103,7 +103,7 @@ namespace InterfazMaui.Views
             //DocenteEntry.Text = string.Empty;
             CursoImage.Source = null; // Limpia la imagen seleccionada
             DescripcionEditor.Text = string.Empty;
-            DuracionEntry.Text = string.Empty;
+            DuracionPicker.SelectedItem = null;
             NivelPicker.SelectedItem = null;
             RequisitosEditor.Text = string.Empty;
             imageUrl = null; // Resetear la URL de la imagen

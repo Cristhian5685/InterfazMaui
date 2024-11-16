@@ -26,7 +26,7 @@ namespace InterfazMaui.Views
             NameEntry.Text = cursoActual.Name;
             CursoImage.Source = cursoActual.Image;
             DescripcionEditor.Text = cursoActual.Descripcion;
-            DuracionEntry.Text = cursoActual.Duracion;
+            DuracionPicker.SelectedItem = cursoActual.Duracion;
             NivelPicker.SelectedItem = cursoActual.Nivel;
             RequisitosEditor.Text = cursoActual.Requisitos;
             imageUrl = cursoActual.Image; // Asignamos la URL de la imagen actual
@@ -94,7 +94,7 @@ namespace InterfazMaui.Views
                 // Actualizar el curso con los datos ingresados
                 cursoActual.Name = NameEntry.Text;
                 cursoActual.Descripcion = DescripcionEditor.Text;
-                cursoActual.Duracion = DuracionEntry.Text;
+                cursoActual.Duracion = DuracionPicker.SelectedItem?.ToString();
                 cursoActual.Nivel = NivelPicker.SelectedItem?.ToString();
                 cursoActual.Requisitos = RequisitosEditor.Text;
                 cursoActual.Image = imageUrl;

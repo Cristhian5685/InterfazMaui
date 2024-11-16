@@ -1,77 +1,95 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:InterfazMaui.Converters"
+              xmlns:views="clr-namespace:InterfazMaui.Views" 
              x:Class="InterfazMaui.Views.CursosView"
              Title="CursosView">
-    <Grid BackgroundColor="#0d0118">
-        <CollectionView ItemsSource="{Binding CursosDisponibles}" Margin="20">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:BoolToInscribirTextConverter x:Key="BoolToInscribirTextConverter" />
+            <local:BoolToInscribirCommandConverter x:Key="BoolToInscribirCommandConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <Grid BackgroundColor="#0d0118" Padding="20">
+        <CollectionView ItemsSource="{Binding CursosDisponibles}">
+            <!-- Cambia el layout a orientación vertical para mostrar una sola columna -->
             <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical" Span="2" />
+                <LinearItemsLayout Orientation="Vertical" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10">
-                        <Border BackgroundColor="#311b45" Stroke="#6e557c" StrokeShape="RoundRectangle 20,20,20,20" StrokeThickness="2">
-                            <VerticalStackLayout Spacing="10">
-                                <!-- Imagen del curso -->
-                                <Image Source="{Binding Image}" HeightRequest="180" Aspect="AspectFill" Margin="0,10,0,10"/>
+                    <Frame BackgroundColor="#311b45" BorderColor="#6e557c" CornerRadius="15" Margin="5" HasShadow="True">
+                        <VerticalStackLayout Spacing="10" Padding="10">
 
-                                <!-- Nombre del curso -->
-                                <Label Text="{Binding Name}" FontSize="Large" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                            <!-- Imagen del curso con bordes redondeados -->
+                            <Frame CornerRadius="15" Padding="0" HasShadow="False">
+                                <Image Source="{Binding Image}" HeightRequest="180" Aspect="AspectFill" />
+                            </Frame>
 
-                                <!-- Docente -->
-                                <Label Text="{Binding Docente, StringFormat='Docente: {0}'}" FontSize="Small" TextColor="#ac9db9" HorizontalOptions="Center"/>
+                            <!-- Nombre del curso -->
+                            <Label Text="{Binding Name}" FontSize="Large" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
 
-                                <!-- Detalles ocultos inicialmente -->
-                                <Label Text="{Binding Duracion, StringFormat='Duración: {0}'}" 
-                                       FontSize="Small" TextColor="#ac9db9" 
-                                       HorizontalOptions="Center" IsVisible="{Binding MostrarDetalles}"/>
-                                <Label Text="{Binding Nivel, StringFormat='Nivel: {0}'}" 
-                                       FontSize="Small" TextColor="#ac9db9" 
-                                       HorizontalOptions="Center" IsVisible="{Binding MostrarDetalles}"/>
-                                <Label Text="{Binding Descripcion}" 
-                                       FontSize="Small" TextColor="White" 
-                                       HorizontalOptions="Center" LineBreakMode="WordWrap" 
-                                       MaxLines="3" IsVisible="{Binding MostrarDetalles}"/>
-                                <Label Text="{Binding Requisitos, StringFormat='Requisitos: {0}'}" 
-                                       FontSize="Small" TextColor="#ac9db9" 
-                                       HorizontalOptions="Center" IsVisible="{Binding MostrarDetalles}"/>
+                            <!-- Docente -->
+                            <Label Text="{Binding Docente, StringFormat='Docente: {0}'}" FontSize="Small" TextColor="#ac9db9" HorizontalOptions="Center"/>
 
+                            <!-- Detalles ocultos inicialmente -->
+                            <Label Text="{Binding Duracion, StringFormat='Duración: {0}'}" FontSize="Small" TextColor="#ac9db9" HorizontalOptions="Center" IsVisible="{Binding MostrarDetalles}"/>
+                            <Label Text="{Binding Nivel, StringFormat='Nivel: {0}'}" FontSize="Small" TextColor="#ac9db9" HorizontalOptions="Center" IsVisible="{Binding MostrarDetalles}"/>
+                            <Label Text="{Binding Descripcion}" FontSize="Small" TextColor="White" HorizontalOptions="Center" LineBreakMode="WordWrap" MaxLines="3" IsVisible="{Binding MostrarDetalles}"/>
+                            <Label Text="{Binding Requisitos, StringFormat='Requisitos: {0}'}" FontSize="Small" TextColor="#ac9db9" HorizontalOptions="Center" IsVisible="{Binding MostrarDetalles}"/>
+
+                            <!-- Botones de acción en fila -->
+                            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" Margin="0,10,0,0">
                                 <Button Text="{Binding VerMasTexto}"
                                         BackgroundColor="#512DA8" 
                                         TextColor="White" 
-                                        CornerRadius="20" 
-                                        HorizontalOptions="Center" 
-                                        Margin="0,10,0,0"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.ToggleVerMasCommand}"
-                                        CommandParameter="{Binding}" />
+                                        CommandParameter="{Binding}"
+                                        WidthRequest="100"
+                                        HeightRequest="40" />
 
-                                <Button Text="Inscribirse"
+                                <!--<Button Text="Inscribirse"
                                         BackgroundColor="#512DA8"
                                         TextColor="White"
-                                        CornerRadius="20"
-                                        HorizontalOptions="Center"
-                                        Margin="0,10,0,0"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.InscribirseCommand}"
-                                        CommandParameter="{Binding}" />
-                                
-                                 <Button Text="Desinscribirse"
+                                        CommandParameter="{Binding}"
+                                        WidthRequest="100"
+                                        HeightRequest="40" />
+
+                                <Button Text="Desinscribirse"
                                         BackgroundColor="#512DA8"
                                         TextColor="White"
-                                        CornerRadius="20"
-                                        HorizontalOptions="Center"
-                                        Margin="0,10,0,0"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.DesinscribirseCommand}"
-                                        CommandParameter="{Binding}" />
+                                        CommandParameter="{Binding}"
+                                        WidthRequest="100"
+                                        HeightRequest="40" />-->
 
-                                 
+                                <Button Text="{Binding EstaInscrito, Converter={StaticResource BoolToInscribirTextConverter}}"
+                                        BackgroundColor="#512DA8"
+                                        TextColor="White"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.ToggleInscripcionCommand}"
+                                        CommandParameter="{Binding}"
+                                        WidthRequest="100"
+                                        HeightRequest="40" />   
 
 
-                            </VerticalStackLayout>
-                        </Border>
-                    </Grid>
+
+
+
+
+
+                            </HorizontalStackLayout>
+
+                        </VerticalStackLayout>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
     </Grid>
 </ContentPage>
+
